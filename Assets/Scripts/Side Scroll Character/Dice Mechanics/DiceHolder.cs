@@ -9,9 +9,11 @@ namespace DiceMechanics
         //Serialized
         [SerializeField] GameObject dicePrefab;
         [SerializeField] float diceKick;
+        [SerializeField] Transform throwPoint;
+        [SerializeField] float throwkick;
 
         //private
-        [SerializeField] bool isHoldingDice;
+        bool isHoldingDice;
 
         GameObject yourDice;
 
@@ -54,6 +56,17 @@ namespace DiceMechanics
             if(isHoldingDice)
             {
                 HoldCheck();
+            }
+        }
+
+        public void ThrowHeldDice()
+        {
+            if(isHoldingDice)
+            {
+                isHoldingDice = false;
+                yourDice = Instantiate(dicePrefab, throwPoint.position, Quaternion.identity);
+                Rigidbody2D thisRigidBody = yourDice.GetComponent<Rigidbody2D>();
+                thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, throwkick);
             }
         }
     }

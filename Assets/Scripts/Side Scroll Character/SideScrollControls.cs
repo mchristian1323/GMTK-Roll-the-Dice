@@ -20,20 +20,26 @@ namespace SideScrollControl
         [SerializeField] float fallMultiplier = 2.5f;
         [SerializeField] float lowJumpPower = 2f;
 
-        [SerializeField] bool canMove;
-
         //private
         Rigidbody2D myRigidbody;
         Animator myAnimator;
         PlayerInput myPlayerInput;
         BoxCollider2D myBoxCollider;
+        SpriteRenderer mySpriteRenderer;
 
         Vector2 controllerMovement;
 
         float xThrow;
 
+        bool canMove;
         bool isMoving;
         bool isJumping;
+
+        float counter = 2;
+        bool charging = false;
+
+        [Header("ChargeJump")]
+        [SerializeField] float bernyChargeJump;
 
         // Start is called before the first frame update
         void Awake()
@@ -43,12 +49,18 @@ namespace SideScrollControl
             myRigidbody = GetComponent<Rigidbody2D>();
             myAnimator = GetComponent<Animator>();
             myBoxCollider = GetComponent<BoxCollider2D>();
+            mySpriteRenderer = GetComponent<SpriteRenderer>();
 
             //controller actions
             myPlayerInput.actions["jump"].started += OnJump;
             myPlayerInput.actions["jump"].canceled += OnJump;
             myPlayerInput.actions["MoveDetect"].started += OnMoveDetect;
             myPlayerInput.actions["MoveDetect"].canceled += OnMoveDetect;
+
+            //new controller actions
+            myPlayerInput.actions["DiceThrow"].started += OnDiceThrow;
+            myPlayerInput.actions["Charge Jump"].started += OnChargeJump;
+            myPlayerInput.actions["Charge Jump"].canceled += OnChargeJump;
 
             canMove = true;
         }
@@ -66,6 +78,11 @@ namespace SideScrollControl
 
             //new
             StunEnd();
+
+            if(charging && counter > 0)
+            {
+                counter -= 1 * Time.deltaTime;
+            }
         }
 
         //movement
@@ -137,7 +154,6 @@ namespace SideScrollControl
             {
                 myRigidbody.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpPower - 1) * Time.deltaTime;
             }
-            
         }    
 
         //animation
@@ -164,7 +180,8 @@ namespace SideScrollControl
             }
         }
 
-        //new
+        //NEW
+        //Attack Stun
         public void SetMove()
         {
             canMove = false;
@@ -197,7 +214,41 @@ namespace SideScrollControl
             myAnimator.SetBool("Recover", true);
             yield return new WaitForSeconds(.1f);
             myAnimator.SetBool("Recover", false);
-            
+        }
+
+        //Moves
+        public void OnDiceThrow(InputAction.CallbackContext context)
+        {
+            GetComponent<DiceMechanics.DiceHolder>().ThrowHeldDice();
+
+            myAnimator.SetTrigger("Throw Dice");
+        }
+
+        public void OnChargeJump(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+            {
+                myAnimator.SetBool("Charge Jump", true);
+                charging = true;
+                canMove = false;
+            }
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                canMove = true;
+                if(counter <= 0)
+                {
+                    myAnimator.SetBool("Charge Jump", false);
+                    myRigidbody.velocity += new Vector2(0f, bernyChargeJump);
+                    counter = 2;
+                    charging = false;
+                }
+                else if(counter > 0)
+                {
+                    myAnimator.SetBool("Charge Jump", false);
+                    counter = 2;
+                    charging = false;
+                }
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ TagManager:
   - Ground
   - Dice
   - Hazard
-  - 
+  - Sticky
   - 
   - 
   - 
@@ -43,4 +43,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1501008851
+    locked: 0
+  - name: Enemies
+    uniqueID: 2018612347
+    locked: 0
+  - name: Collectables
+    uniqueID: 1883644105
+    locked: 0
+  - name: Foreground
+    uniqueID: 4123740877
+    locked: 0
+  - name: Dice
+    uniqueID: 1567351479
+    locked: 0
+  - name: Bernie
+    uniqueID: 2542506065
+    locked: 0
+  - name: Off Stage
+    uniqueID: 2601535921
     locked: 0

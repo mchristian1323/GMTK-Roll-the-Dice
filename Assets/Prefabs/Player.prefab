@@ -34,7 +34,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.1093755, y: 0.6562495, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8323674383782379842}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -140,11 +141,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1752461231
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 230072285645218991, guid: 3e7b021472268f648a68af8485a39a73, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.95686275}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -225,6 +226,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d56a88ca-5479-49ef-81bb-17e921f1fa52
     m_ActionName: Normal Side Scroll/MoveDetect[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2227265b-bbda-44c9-8b74-380dda13370a
+    m_ActionName: Normal Side Scroll/DiceThrow[/Keyboard/slash]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 21b6d0eb-0bd6-445c-99ee-25a404659f8a
+    m_ActionName: Normal Side Scroll/Charge Jump[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Normal Side Scroll
@@ -246,7 +255,7 @@ MonoBehaviour:
   playerJumpPower: 13
   fallMultiplier: 5
   lowJumpPower: 5
-  canMove: 0
+  bernyChargeJump: 100
 --- !u!114 &7298171895301187210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,4 +285,35 @@ MonoBehaviour:
   dicePrefab: {fileID: 1858376464008345922, guid: cf316243a81037f43b615b7fb73e0b84,
     type: 3}
   diceKick: 150
-  isHoldingDice: 0
+  throwPoint: {fileID: 8323674383782379842}
+  throwkick: 6
+--- !u!1 &8391142287622216131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8323674383782379842}
+  m_Layer: 8
+  m_Name: Throw Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8323674383782379842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8391142287622216131}
+  m_LocalRotation: {x: -0, y: -0, z: -0.53814983, w: 0.8428492}
+  m_LocalPosition: {x: 0.5899999, y: -0.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7298171895301187218}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -65.116005}

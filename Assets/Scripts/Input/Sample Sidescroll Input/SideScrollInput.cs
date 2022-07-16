@@ -41,6 +41,22 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DiceThrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""2227265b-bbda-44c9-8b74-380dda13370a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Charge Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""21b6d0eb-0bd6-445c-99ee-25a404659f8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -48,6 +64,17 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""b0006b2d-3a5c-487d-a51e-dc2040bbcdf2"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3857b335-e875-4a45-8192-e3ff33e216b7"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
@@ -131,6 +158,28 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""action"": ""MoveDetect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eeea8991-55d8-4895-911e-1d5fbff1b436"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""DiceThrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73367116-3d1a-47b3-a10a-90c54bf73df0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Charge Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -170,6 +219,8 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         m_NormalSideScroll_Jump = m_NormalSideScroll.FindAction("Jump", throwIfNotFound: true);
         m_NormalSideScroll_Move = m_NormalSideScroll.FindAction("Move", throwIfNotFound: true);
         m_NormalSideScroll_MoveDetect = m_NormalSideScroll.FindAction("MoveDetect", throwIfNotFound: true);
+        m_NormalSideScroll_DiceThrow = m_NormalSideScroll.FindAction("DiceThrow", throwIfNotFound: true);
+        m_NormalSideScroll_ChargeJump = m_NormalSideScroll.FindAction("Charge Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -222,6 +273,8 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
     private readonly InputAction m_NormalSideScroll_Jump;
     private readonly InputAction m_NormalSideScroll_Move;
     private readonly InputAction m_NormalSideScroll_MoveDetect;
+    private readonly InputAction m_NormalSideScroll_DiceThrow;
+    private readonly InputAction m_NormalSideScroll_ChargeJump;
     public struct NormalSideScrollActions
     {
         private @SideScrollInput m_Wrapper;
@@ -229,6 +282,8 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_NormalSideScroll_Jump;
         public InputAction @Move => m_Wrapper.m_NormalSideScroll_Move;
         public InputAction @MoveDetect => m_Wrapper.m_NormalSideScroll_MoveDetect;
+        public InputAction @DiceThrow => m_Wrapper.m_NormalSideScroll_DiceThrow;
+        public InputAction @ChargeJump => m_Wrapper.m_NormalSideScroll_ChargeJump;
         public InputActionMap Get() { return m_Wrapper.m_NormalSideScroll; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -247,6 +302,12 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @MoveDetect.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnMoveDetect;
                 @MoveDetect.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnMoveDetect;
                 @MoveDetect.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnMoveDetect;
+                @DiceThrow.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnDiceThrow;
+                @DiceThrow.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnDiceThrow;
+                @DiceThrow.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnDiceThrow;
+                @ChargeJump.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnChargeJump;
+                @ChargeJump.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnChargeJump;
+                @ChargeJump.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnChargeJump;
             }
             m_Wrapper.m_NormalSideScrollActionsCallbackInterface = instance;
             if (instance != null)
@@ -260,6 +321,12 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @MoveDetect.started += instance.OnMoveDetect;
                 @MoveDetect.performed += instance.OnMoveDetect;
                 @MoveDetect.canceled += instance.OnMoveDetect;
+                @DiceThrow.started += instance.OnDiceThrow;
+                @DiceThrow.performed += instance.OnDiceThrow;
+                @DiceThrow.canceled += instance.OnDiceThrow;
+                @ChargeJump.started += instance.OnChargeJump;
+                @ChargeJump.performed += instance.OnChargeJump;
+                @ChargeJump.canceled += instance.OnChargeJump;
             }
         }
     }
@@ -287,5 +354,7 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnMoveDetect(InputAction.CallbackContext context);
+        void OnDiceThrow(InputAction.CallbackContext context);
+        void OnChargeJump(InputAction.CallbackContext context);
     }
 }

@@ -28,6 +28,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "DiceThrow",
+                    "type": "Button",
+                    "id": "2227265b-bbda-44c9-8b74-380dda13370a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Charge Jump",
+                    "type": "Button",
+                    "id": "21b6d0eb-0bd6-445c-99ee-25a404659f8a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -35,6 +51,17 @@
                     "name": "",
                     "id": "b0006b2d-3a5c-487d-a51e-dc2040bbcdf2",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3857b335-e875-4a45-8192-e3ff33e216b7",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
@@ -116,6 +143,28 @@
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "MoveDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eeea8991-55d8-4895-911e-1d5fbff1b436",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "DiceThrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73367116-3d1a-47b3-a10a-90c54bf73df0",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Charge Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
