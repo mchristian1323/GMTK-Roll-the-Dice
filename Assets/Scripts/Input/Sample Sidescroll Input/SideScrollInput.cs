@@ -57,6 +57,14 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""8264e75b-31ad-41e0-87b4-bfb0440d25f2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -180,6 +188,17 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""action"": ""Charge Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""844d2872-18a5-475c-8ad6-68968932b9ba"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -221,6 +240,7 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         m_NormalSideScroll_MoveDetect = m_NormalSideScroll.FindAction("MoveDetect", throwIfNotFound: true);
         m_NormalSideScroll_DiceThrow = m_NormalSideScroll.FindAction("DiceThrow", throwIfNotFound: true);
         m_NormalSideScroll_ChargeJump = m_NormalSideScroll.FindAction("Charge Jump", throwIfNotFound: true);
+        m_NormalSideScroll_Pause = m_NormalSideScroll.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -275,6 +295,7 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
     private readonly InputAction m_NormalSideScroll_MoveDetect;
     private readonly InputAction m_NormalSideScroll_DiceThrow;
     private readonly InputAction m_NormalSideScroll_ChargeJump;
+    private readonly InputAction m_NormalSideScroll_Pause;
     public struct NormalSideScrollActions
     {
         private @SideScrollInput m_Wrapper;
@@ -284,6 +305,7 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         public InputAction @MoveDetect => m_Wrapper.m_NormalSideScroll_MoveDetect;
         public InputAction @DiceThrow => m_Wrapper.m_NormalSideScroll_DiceThrow;
         public InputAction @ChargeJump => m_Wrapper.m_NormalSideScroll_ChargeJump;
+        public InputAction @Pause => m_Wrapper.m_NormalSideScroll_Pause;
         public InputActionMap Get() { return m_Wrapper.m_NormalSideScroll; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +330,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @ChargeJump.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnChargeJump;
                 @ChargeJump.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnChargeJump;
                 @ChargeJump.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnChargeJump;
+                @Pause.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_NormalSideScrollActionsCallbackInterface = instance;
             if (instance != null)
@@ -327,6 +352,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @ChargeJump.started += instance.OnChargeJump;
                 @ChargeJump.performed += instance.OnChargeJump;
                 @ChargeJump.canceled += instance.OnChargeJump;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -356,5 +384,6 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         void OnMoveDetect(InputAction.CallbackContext context);
         void OnDiceThrow(InputAction.CallbackContext context);
         void OnChargeJump(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

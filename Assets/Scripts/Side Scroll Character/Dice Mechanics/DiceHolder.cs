@@ -12,9 +12,10 @@ namespace DiceMechanics
         [SerializeField] Transform throwPoint;
         [SerializeField] float throwkick;
 
-        //private
-        bool isHoldingDice;
+        //public
+        public bool isHoldingDice;
 
+        //private
         GameObject yourDice;
 
         private void Start()

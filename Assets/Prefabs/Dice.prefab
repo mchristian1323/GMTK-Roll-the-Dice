@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0012482554, y: 0.000000022351742}
+  m_Offset: {x: 0.000055421144, y: -0.00029820204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14366624, y: 0.14116977}
+  m_Size: {x: 0.16752276, y: 0.1692012}
   m_EdgeRadius: 0
 --- !u!1 &1858376464008345922
 GameObject:
@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 1858376464008345923}
   - component: {fileID: 1858376464008345924}
   - component: {fileID: 1858376464008345928}
+  - component: {fileID: 1012044749076629380}
   m_Layer: 10
   m_Name: Dice
   m_TagString: Dice
@@ -132,7 +133,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 4057697981180691472, guid: e2dbc70a45fa63f4e8a8f69825b63d13,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,18 +158,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00029820204, y: 0.00029823184}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.18, y: 0.18}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.20286036, y: 0.20353821}
   m_EdgeRadius: 0
 --- !u!50 &1858376464008345923
 Rigidbody2D:
@@ -215,3 +217,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ab330259b20104198eb19faadc56e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1012044749076629380
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858376464008345922}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d6cc931a7bad1444a13ef80865fb3b5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

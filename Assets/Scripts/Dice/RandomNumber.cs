@@ -10,7 +10,7 @@ namespace Dice
 
         public int RandomGenerate()
         {
-            generatedNumber = Random.Range(1, 7);
+            generatedNumber = Random.Range(1, 10);
 
             return generatedNumber;
         }

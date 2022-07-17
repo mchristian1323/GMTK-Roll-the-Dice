@@ -7,6 +7,11 @@ TagManager:
   - Ground
   - Dice
   - Damage
+  - Soft Enemy
+  - Player Feet
+  - Hard Enemy
+  - Shot
+  - Goblin
   layers:
   - Default
   - TransparentFX
@@ -22,10 +27,10 @@ TagManager:
   - Hazard
   - Sticky
   - Wall
-  - 
-  - 
-  - 
-  - 
+  - EnemyDetection
+  - Player Feet
+  - Enemy Radar
+  - PlayerProjectile
   - 
   - 
   - 
@@ -61,6 +66,12 @@ TagManager:
     locked: 0
   - name: Bernie
     uniqueID: 2542506065
+    locked: 0
+  - name: Bernie Dice
+    uniqueID: 1850169851
+    locked: 0
+  - name: Bernie Hand
+    uniqueID: 1807713883
     locked: 0
   - name: Off Stage
     uniqueID: 2601535921

@@ -25,14 +25,15 @@ namespace SideScrollControl
         Animator myAnimator;
         PlayerInput myPlayerInput;
         BoxCollider2D myBoxCollider;
-        SpriteRenderer mySpriteRenderer;
+        //SpriteRenderer mySpriteRenderer;
+        
 
         Vector2 controllerMovement;
 
         float xThrow;
 
         bool canMove;
-        bool isMoving;
+        [HideInInspector] public bool isMoving;
         bool isJumping;
 
         float counter = 2;
@@ -40,6 +41,12 @@ namespace SideScrollControl
 
         [Header("ChargeJump")]
         [SerializeField] float bernyChargeJump;
+
+        [Header("UI")]
+        [SerializeField] UI.MenuManager myMenuManager;
+
+        //float jumpTimerSet = 20f;
+        //float jumpTimer;
 
         // Start is called before the first frame update
         void Awake()
@@ -49,7 +56,7 @@ namespace SideScrollControl
             myRigidbody = GetComponent<Rigidbody2D>();
             myAnimator = GetComponent<Animator>();
             myBoxCollider = GetComponent<BoxCollider2D>();
-            mySpriteRenderer = GetComponent<SpriteRenderer>();
+            //mySpriteRenderer = GetComponent<SpriteRenderer>();
 
             //controller actions
             myPlayerInput.actions["jump"].started += OnJump;
@@ -61,6 +68,7 @@ namespace SideScrollControl
             myPlayerInput.actions["DiceThrow"].started += OnDiceThrow;
             myPlayerInput.actions["Charge Jump"].started += OnChargeJump;
             myPlayerInput.actions["Charge Jump"].canceled += OnChargeJump;
+            myPlayerInput.actions["Pause"].started += OnPause;
 
             canMove = true;
         }
@@ -117,6 +125,7 @@ namespace SideScrollControl
                 if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
                 {
                     myAnimator.SetTrigger("Land");
+                    //jumpTimer = jumpTimerSet;
                 }
             }
         }
@@ -124,6 +133,7 @@ namespace SideScrollControl
         //jumping
         public void OnJump(InputAction.CallbackContext context)
         {
+            
             //detects the input properly
             if(context.phase == InputActionPhase.Started)
             {
@@ -187,7 +197,7 @@ namespace SideScrollControl
             canMove = false;
             if(myBoxCollider.enabled == true)
             {
-                StartCoroutine(ColliderShutdown());
+                //StartCoroutine(ColliderShutdown());
             }
         }
 
@@ -249,6 +259,17 @@ namespace SideScrollControl
                     charging = false;
                 }
             }
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            myMenuManager.PauseGame();
+        }
+
+        public void LaunchPlayer()
+        {
+            myRigidbody.velocity = Vector2.zero;
+            myRigidbody.velocity += new Vector2(0f, bernyChargeJump);
         }
     }
 }
