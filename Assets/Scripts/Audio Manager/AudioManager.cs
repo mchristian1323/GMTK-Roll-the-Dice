@@ -4,16 +4,17 @@ using UnityEngine;
 
 namespace Audio
 {
-    public class AudioManager : MonoBehaviour
+    public partial class AudioManager : MonoBehaviour
     {
         public Sound[] sounds;
 
         public static AudioManager instance;
+        //AudioManager
 
-        // Start is called before the first frame update
         void Awake()
         {
-            if(instance == null)
+
+            if (instance == null)
                 instance = this;
             else
             {
@@ -23,7 +24,7 @@ namespace Audio
 
             DontDestroyOnLoad(gameObject);
 
-            foreach(Sound s in sounds)
+            foreach (Sound s in sounds)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
                 s.source.clip = s.clip;
@@ -34,20 +35,48 @@ namespace Audio
             }
         }
 
+        void Start()
+        {
+            Play("Theme");
+
+        }
+
         public void Play(string name)
         {
             Sound s = Array.Find(sounds, sound => sound.name == name);
-            if (s != null)
+            if (s == null)
             {
-                Debug.LogWarning("Sound: " + name + " not found!");
+                Debug.LogWarning("Sound: " + name + " not found");
                 return;
             }
+
             s.source.Play();
         }
 
-        private void Start()
+        //this addition to the code was made by me, the rest was from Brackeys tutorial
+        public void Stop(string name)
         {
-            Play("Theme");
+            Sound s = Array.Find(sounds, sound => sound.name == name);
+
+            s.source.Stop();
+        }
+
+        public void PlayVillainTheme()
+        {
+            Stop("Theme");
+            Play("Leap and Frog");
+        }
+
+        public void PlayBernieTheme()
+        {
+            Stop("Leap and Frog");
+            Play("Drums and or Bass");
+        }
+
+        public void PlayVictory()
+        {
+            Stop("Drums and or Bass");
+            Play("On the Farm");
         }
     }
 }

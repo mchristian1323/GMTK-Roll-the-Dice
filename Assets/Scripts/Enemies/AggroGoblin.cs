@@ -6,7 +6,6 @@ namespace Enemy
 {
     public class AggroGoblin : MonoBehaviour
     {
-        [SerializeField] Transform playerTarget;
         [SerializeField] Transform currentTarget;
         [SerializeField] float agroRange;
         [SerializeField] float moveSpeed;
@@ -15,6 +14,8 @@ namespace Enemy
         [SerializeField] GameObject dice;
         [SerializeField] Transform diceSpawner;
         [SerializeField] float throwkick;
+        [SerializeField] GameObject charge;
+        [SerializeField] bool slimeMode;
 
         GameObject theDice;
         Transform tempTransform;
@@ -27,7 +28,7 @@ namespace Enemy
         {
             myRigidbody = GetComponent<Rigidbody2D>();
             myCircleCollider = GetComponent<CircleCollider2D>();
-            currentTarget = playerTarget;
+            currentTarget = GameObject.Find("Player").transform;
         }
 
         // Update is called once per frame
@@ -59,29 +60,51 @@ namespace Enemy
                 jumpCounter = 5;
             }
 
-            if (myRigidbody.velocity.y == 0)
+            if(!slimeMode)
             {
-                if (transform.position.x < currentTarget.position.x)
+                if (myRigidbody.velocity.y == 0)
                 {
-                    myRigidbody.velocity = new Vector2(moveSpeed, 0);
-                    transform.localScale = new Vector2(1, 1);
+                    if (transform.position.x < currentTarget.position.x)
+                    {
+                        myRigidbody.velocity = new Vector2(moveSpeed, 0);
+                        transform.localScale = new Vector2(1, 1);
+                    }
+                    else if (transform.position.x > currentTarget.position.x)
+                    {
+                        myRigidbody.velocity = new Vector2(-moveSpeed, 0);
+                        transform.localScale = new Vector2(-1, 1);
+                    }
                 }
-                else if (transform.position.x > currentTarget.position.x)
+            }
+            else
+            {
+                if (myRigidbody.velocity.y == 0)
                 {
-                    myRigidbody.velocity = new Vector2(-moveSpeed, 0);
-                    transform.localScale = new Vector2(-1, 1);
+                    if (transform.position.x < currentTarget.position.x)
+                    {
+                        myRigidbody.velocity = new Vector2(moveSpeed, 0);
+                        transform.localScale = new Vector2(2, 2);
+                    }
+                    else if (transform.position.x > currentTarget.position.x)
+                    {
+                        myRigidbody.velocity = new Vector2(-moveSpeed, 0);
+                        transform.localScale = new Vector2(-2, 2);
+                    }
                 }
             }
         }
 
         private void DiceChuck()
         {
-            if(myCircleCollider.IsTouchingLayers(LayerMask.GetMask("Dice")))
+            if (myCircleCollider.IsTouchingLayers(LayerMask.GetMask("Dice")))
             {
-                currentTarget.transform.position = diceSpawner.position;
-                theDice.GetComponent<Dice.Cursed.CursedDice>().ResetDice();
-                theDice.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                theDice.GetComponent<Rigidbody2D>().velocity = new Vector2(throwkick * transform.localScale.x, throwkick);
+                if (currentTarget.name != "Player")
+                {
+                    currentTarget.transform.position = diceSpawner.position;
+                    theDice.GetComponent<Dice.Cursed.CursedDice>().ResetDice();
+                    theDice.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    theDice.GetComponent<Rigidbody2D>().velocity = new Vector2(throwkick * transform.localScale.x, throwkick);
+                }
             }
         }
 
@@ -101,7 +124,7 @@ namespace Enemy
 
         public void SetPlayerTarget()
         {
-            currentTarget = playerTarget;
+            currentTarget = GameObject.Find("Player").transform;
         }
 
         /*
@@ -119,6 +142,13 @@ namespace Enemy
         public void BopEnemy()
         {
             Destroy(gameObject);
+        }
+
+        public void CurseMode()
+        {
+            charge.SetActive(true);
+            gameObject.layer = LayerMask.NameToLayer("Deadly");
+            gameObject.tag = "Deadly";
         }
     }
 }

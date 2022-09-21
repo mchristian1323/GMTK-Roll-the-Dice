@@ -36,8 +36,7 @@ namespace DiceMechanics
             }
             else
             {
-                //pick up anim
-                Debug.Log("dice get");
+                FindObjectOfType<Audio.AudioManager>().Play("Dice Pickup");
                 Destroy(yourDice);
             }
         }
@@ -68,6 +67,10 @@ namespace DiceMechanics
                 yourDice = Instantiate(dicePrefab, throwPoint.position, Quaternion.identity);
                 Rigidbody2D thisRigidBody = yourDice.GetComponent<Rigidbody2D>();
                 thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, throwkick);
+
+                //throw dice horizontal without gravity
+                //after a minute dice will drop
+                //on hit store the number and deal damage
             }
         }
     }

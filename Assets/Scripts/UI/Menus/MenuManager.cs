@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using SideScrollControl;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -19,16 +21,23 @@ namespace UI
         {
             if (isPaused)
             {
-                isPaused = !isPaused;
+                isPaused = false;
                 pauseMenu.SetActive(false);
                 Time.timeScale = 1f;
+                FindObjectOfType<PlayerSideScrollControls>().ChangeMoveStatus(true);
             }
             else
             {
-                isPaused = !isPaused;
+                isPaused = true;
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
+                FindObjectOfType<PlayerSideScrollControls>().ChangeMoveStatus(false);
             }
+        }
+
+        public void Reset()
+        {
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void QuitGame()

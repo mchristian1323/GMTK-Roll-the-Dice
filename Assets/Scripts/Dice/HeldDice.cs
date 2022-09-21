@@ -11,7 +11,7 @@ namespace DiceMechanics
 
         Animator diceAnimator;
         DiceHolder myDiceHolder;
-        SideScrollControl.SideScrollControls mySideScrollControls;
+        SideScrollControl.PlayerSideScrollControls mySideScrollControls;
         bool haveHands = true;
 
         // Start is called before the first frame update
@@ -19,7 +19,7 @@ namespace DiceMechanics
         {
             diceAnimator = dice.gameObject.GetComponent<Animator>();
             myDiceHolder = GetComponentInParent<DiceHolder>();
-            mySideScrollControls = GetComponentInParent<SideScrollControl.SideScrollControls>();
+            mySideScrollControls = GetComponentInParent<SideScrollControl.PlayerSideScrollControls>();
         }
 
         // Update is called once per frame

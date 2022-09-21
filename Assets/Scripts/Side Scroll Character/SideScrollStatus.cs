@@ -14,7 +14,7 @@ namespace SideScrollControl
         BoxCollider2D myBoxCollider;
         Rigidbody2D myRigidbody;
         DiceHolder myDiceHolder;
-        SideScrollControls mySideScrollControls;
+        PlayerSideScrollControls mySideScrollControls;
         Animator myAnimator;
 
         // Start is called before the first frame update
@@ -23,7 +23,7 @@ namespace SideScrollControl
             myBoxCollider = GetComponent<BoxCollider2D>();
             myRigidbody = GetComponent<Rigidbody2D>();
             myDiceHolder = GetComponent<DiceHolder>();
-            mySideScrollControls = GetComponent<SideScrollControls>();
+            mySideScrollControls = GetComponent<PlayerSideScrollControls>();
             myAnimator = GetComponent<Animator>();
         }
 
@@ -37,12 +37,26 @@ namespace SideScrollControl
         {
             if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
             {
+                FindObjectOfType<Audio.AudioManager>().Play("Damage");
                 myAnimator.SetBool("Damage", true);
                 myDiceHolder.DropDice();
-                mySideScrollControls.SetMove();
+                mySideScrollControls.PauseMove();
                 myRigidbody.velocity = Vector2.zero;
-                myRigidbody.velocity = new Vector2(damageHorizontalKick * transform.localScale.x, damageVerticalKick);
+                myRigidbody.velocity = new Vector2(damageHorizontalKick + transform.localScale.x, damageVerticalKick);
+                StartCoroutine(DamageOff());
             }
+
+            IEnumerator DamageOff()
+            {
+                yield return new WaitForSeconds(.5f);
+                myAnimator.SetBool("Damage", false);
+            }
+
+            if(myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Deadly")))
+            {
+                //mySideScrollControls.BreakBernie();
+            }
+
         }
     }
 }

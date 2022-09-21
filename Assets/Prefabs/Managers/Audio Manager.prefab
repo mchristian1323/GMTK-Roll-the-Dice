@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7614475471529496580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7614475471529496582}
+  - component: {fileID: 7614475471529496581}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7614475471529496582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614475471529496580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7614475471529496581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614475471529496580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca35ebbc6b4ce304089a38a254c9ff23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Dice Bounce
+    clip: {fileID: 8300000, guid: e0e340aa2b69bed45a634cc9f2de1e66, type: 3}
+    volume: 0.564
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Straight Outta Some Swamp
+    clip: {fileID: 8300000, guid: 32cfce6bc8c7e9740ab3a7f852781af5, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Bernie Feet
+    clip: {fileID: 8300000, guid: c19600bdee535a349911898192fc4e82, type: 3}
+    volume: 0.302
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Bone Throw
+    clip: {fileID: 8300000, guid: 1b3be619b02540c4b9563a862727086d, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Charge Jump
+    clip: {fileID: 8300000, guid: d271b955a153c9a4f85e2f85f6ad014e, type: 3}
+    volume: 0.312
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Charge
+    clip: {fileID: 8300000, guid: cadc5502766dfcb489fdcbc415726575, type: 3}
+    volume: 0.304
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Coin
+    clip: {fileID: 8300000, guid: 637f70db87f8ff74bab47bd9177dcacc, type: 3}
+    volume: 0.312
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Damage Long
+    clip: {fileID: 8300000, guid: 165b48351c9347f4781a20a31de23767, type: 3}
+    volume: 0.551
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Damage
+    clip: {fileID: 8300000, guid: 9704e10b1064bef428bcaba42a2f6aee, type: 3}
+    volume: 0.312
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dice Pickup
+    clip: {fileID: 8300000, guid: 0911e58dbe45ced4eaf36144473934e3, type: 3}
+    volume: 0.318
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dice Throw
+    clip: {fileID: 8300000, guid: 46f081d08c01c684aad603c26ebbe6bb, type: 3}
+    volume: 0.315
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Effect Activate
+    clip: {fileID: 8300000, guid: 4caad01ff8e21714a95b6609fecc22ab, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 4a7fc0a5f4fda5e47949b061c752ad59, type: 3}
+    volume: 0.431
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Gun
+    clip: {fileID: 8300000, guid: 1dd41887fa71cb04eb1702d2b416eece, type: 3}
+    volume: 0.32
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: ffa27b136e0bf1142830c85fbd38ddc7, type: 3}
+    volume: 0.304
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Magic Cast
+    clip: {fileID: 8300000, guid: ccb8ef671ca3be242b0f4534503d68c8, type: 3}
+    volume: 0.315
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Magic Impact
+    clip: {fileID: 8300000, guid: 2bd9e1250e4e09444b554918ac3d0c3c, type: 3}
+    volume: 0.307
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Metal 1
+    clip: {fileID: 8300000, guid: 5ac8ca134917a54479d25bf0eb40d3fc, type: 3}
+    volume: 0.304
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Metal 2
+    clip: {fileID: 8300000, guid: 2b84dd708769d2042b0876c1d540fb70, type: 3}
+    volume: 0.307
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Skeleton Death
+    clip: {fileID: 8300000, guid: 81017fbbc778ede46a9be2654ecd5ca7, type: 3}
+    volume: 0.31
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Drums and or Bass
+    clip: {fileID: 8300000, guid: 469b5dc8658d3d540960a2e4a51d3920, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Leap and Frog
+    clip: {fileID: 8300000, guid: 57fb1d10de0cfac45a0f3d70f768a62b, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

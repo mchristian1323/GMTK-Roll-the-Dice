@@ -12,6 +12,8 @@ TagManager:
   - Hard Enemy
   - Shot
   - Goblin
+  - SpawnSpot
+  - Deadly
   layers:
   - Default
   - TransparentFX
@@ -32,8 +34,8 @@ TagManager:
   - Enemy Radar
   - PlayerProjectile
   - Player Ground Scan
-  - 
-  - 
+  - Deadly
+  - Curse
   - 
   - 
   - 

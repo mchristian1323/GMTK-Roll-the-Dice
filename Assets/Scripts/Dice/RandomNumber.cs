@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Dice
 {
@@ -10,7 +8,7 @@ namespace Dice
 
         public int RandomGenerate()
         {
-            generatedNumber = Random.Range(1, 10);
+            generatedNumber = Random.Range(1, 7);
 
             return generatedNumber;
         }

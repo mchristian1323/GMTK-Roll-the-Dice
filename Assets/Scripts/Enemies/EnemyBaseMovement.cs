@@ -8,6 +8,7 @@ namespace Enemy
     {
         public float moveSpeed;
         Rigidbody2D myRigidbody;
+        [SerializeField] GameObject charge;
 
         // Start is called before the first frame update
         void Start()
@@ -30,6 +31,13 @@ namespace Enemy
         public void BopEnemy()
         {
             Destroy(gameObject);
+        }
+
+        public void CurseMode()
+        {
+            charge.SetActive(true);
+            gameObject.layer = LayerMask.NameToLayer("Deadly");
+            gameObject.tag = "Deadly";
         }
     }
 }

@@ -16,6 +16,14 @@ namespace Enemy
         [SerializeField] Animator myAnimator;
         [SerializeField] float counter = 2;
 
+        public enum Type
+        {
+            wizard,
+            bones,
+        }
+
+        [SerializeField] Type type;
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -72,6 +80,14 @@ namespace Enemy
                 Vector2 direction = target.position - partToRotate.position;
                 GameObject bullet = Instantiate(projectile, barrel.position, barrel.rotation);
                 Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+                if(type == Type.wizard)
+                {
+                    FindObjectOfType<Audio.AudioManager>().Play("Magic Cast");
+                }
+                else
+                {
+                    FindObjectOfType<Audio.AudioManager>().Play("Bone Throw");
+                }
                 //bulletRB.velocity += new Vector2(bulletForce, 0);
                 bulletRB.velocity = direction * bulletForce;
                 counter = 2;
