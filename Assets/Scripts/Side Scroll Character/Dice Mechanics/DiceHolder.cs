@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Dice.Cursed;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace DiceMechanics
 
         //private
         GameObject yourDice;
+        //IEnumerator animationTime;
 
         private void Start()
         {
@@ -64,14 +66,39 @@ namespace DiceMechanics
             if(isHoldingDice)
             {
                 isHoldingDice = false;
+                //animationTime = AnimSlowDown();
+                //StartCoroutine(animationTime);
+                StartCoroutine(AnimSlowDown());
                 yourDice = Instantiate(dicePrefab, throwPoint.position, Quaternion.identity);
                 Rigidbody2D thisRigidBody = yourDice.GetComponent<Rigidbody2D>();
-                thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, throwkick);
+                //thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, throwkick); //old toss
+                yourDice.GetComponent<Dice.Cursed.CursedDice>().GraviturgyAvoidance();
+                thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, 0);
 
-                //throw dice horizontal without gravity
-                //after a minute dice will drop
-                //on hit store the number and deal damage
+                //throw properties-
+                    //need sound effect and maybe some burning animss
+                    //need to delay movement during animation (yield return)
+                    //maybe have float time settled here
+                    
+                //dice properties-
+                    //after a short amount of time the dice will decend
+                    //when colliding with an enemy, the dice will pop up and create a random number to store
+                    //dice is locked to player so player can tounge grab to retrieve it
+                    //if dice drops on the ground, player auto stores a bad number
+                
             }
+        }
+
+        IEnumerator AnimSlowDown()
+        {
+            GetComponent<SideScrollControl.PlayerSideScrollControls>().SetVelocityForAnimation(0, false);
+            yield return new WaitForSeconds(.5f);
+            GetComponent<SideScrollControl.PlayerSideScrollControls>().SetVelocityForAnimation(10, true);
+        }
+
+        public bool GetDiceHoldInfo()
+        {
+            return isHoldingDice;
         }
     }
 }

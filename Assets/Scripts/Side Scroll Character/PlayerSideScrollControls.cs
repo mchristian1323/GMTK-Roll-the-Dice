@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using Audio;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
+using UnityEditor;
 
 namespace SideScrollControl
 {
@@ -173,7 +174,7 @@ namespace SideScrollControl
 
         private void TouchDetecter()
         {
-            if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) //checkes for ground
+            if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) && myRigidbody.velocity.y == 0) //checkes for ground and prevents wall and double jump
             {
                 onLand = true;
             }
@@ -208,9 +209,12 @@ namespace SideScrollControl
 
                 if (!hasJumped && cayoteFrames < cayoteFramesTotal)
                 {
-                    JumpForce();
-                    cayoteFrames = cayoteFramesTotal;
-                    hasJumped = true;
+                    if(myRigidbody.velocity.y <= 0)
+                    {
+                        JumpForce();
+                        cayoteFrames = cayoteFramesTotal;
+                        hasJumped = true;
+                    }
                 }
             }
 
@@ -219,7 +223,6 @@ namespace SideScrollControl
                 cayoteFrames++;
             }
         }
-
         public void PauseMove()
         {
             canMove = false;
@@ -270,6 +273,13 @@ namespace SideScrollControl
         public void ChangeMoveStatus(bool change)
         {
             canMove = change;
+        }
+
+        public void SetVelocityForAnimation(float gravity, bool toggleMove)
+        {
+            canMove = toggleMove;
+            myRigidbody.gravityScale = gravity;
+            myRigidbody.velocity = Vector2.zero;
         }
     }
 }

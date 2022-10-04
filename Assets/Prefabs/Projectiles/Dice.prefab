@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 1858376464008345922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children:
   - {fileID: 1858376463151937748}
   m_Father: {fileID: 0}
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ab330259b20104198eb19faadc56e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCollider: {fileID: 1858376463151937749}
   monBomb: {fileID: 5080338180662585030, guid: 25682b29f68f42e45aec3fda2480e93c, type: 3}
   airBlast: {fileID: 8946558188526605689, guid: 434cff15fccc36c47a4f9ba33c7eb72f,
     type: 3}
@@ -230,6 +231,7 @@ MonoBehaviour:
   four: {fileID: -4659526778356854066, guid: b22e26a08f7b6664e9cd34e14012ced2, type: 3}
   five: {fileID: 4086501517172541447, guid: b22e26a08f7b6664e9cd34e14012ced2, type: 3}
   six: {fileID: -6926972503723164909, guid: b22e26a08f7b6664e9cd34e14012ced2, type: 3}
+  floatTime: 1.5
 --- !u!95 &1012044749076629380
 Animator:
   serializedVersion: 3

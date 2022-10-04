@@ -65,6 +65,38 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f70b527-f390-48ea-bbcf-f3e6b2289b95"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""AimUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ca492ea-7c3b-4aab-b1b1-c5a10f283074"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""AimDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a4bb969-a83e-4159-b1b5-49d221a3d0e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tongue"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6fbf5b7-5fcd-49c9-841e-f74fc2831da3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -199,6 +231,50 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e1d25a6-7db2-4fdf-a7b1-6273ec57ffbd"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db66ddd0-6508-4b11-aa77-a100ce6a8767"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""AimUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a497c26-8f18-4a66-a92a-c0fdf724302f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""AimDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb790e38-7a5e-4f25-b60a-b831c5513d56"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Tongue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +317,10 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         m_NormalSideScroll_DiceThrow = m_NormalSideScroll.FindAction("DiceThrow", throwIfNotFound: true);
         m_NormalSideScroll_ChargeJump = m_NormalSideScroll.FindAction("Charge Jump", throwIfNotFound: true);
         m_NormalSideScroll_Pause = m_NormalSideScroll.FindAction("Pause", throwIfNotFound: true);
+        m_NormalSideScroll_Shoot = m_NormalSideScroll.FindAction("Shoot", throwIfNotFound: true);
+        m_NormalSideScroll_AimUp = m_NormalSideScroll.FindAction("AimUp", throwIfNotFound: true);
+        m_NormalSideScroll_AimDown = m_NormalSideScroll.FindAction("AimDown", throwIfNotFound: true);
+        m_NormalSideScroll_Tongue = m_NormalSideScroll.FindAction("Tongue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -296,6 +376,10 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
     private readonly InputAction m_NormalSideScroll_DiceThrow;
     private readonly InputAction m_NormalSideScroll_ChargeJump;
     private readonly InputAction m_NormalSideScroll_Pause;
+    private readonly InputAction m_NormalSideScroll_Shoot;
+    private readonly InputAction m_NormalSideScroll_AimUp;
+    private readonly InputAction m_NormalSideScroll_AimDown;
+    private readonly InputAction m_NormalSideScroll_Tongue;
     public struct NormalSideScrollActions
     {
         private @SideScrollInput m_Wrapper;
@@ -306,6 +390,10 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         public InputAction @DiceThrow => m_Wrapper.m_NormalSideScroll_DiceThrow;
         public InputAction @ChargeJump => m_Wrapper.m_NormalSideScroll_ChargeJump;
         public InputAction @Pause => m_Wrapper.m_NormalSideScroll_Pause;
+        public InputAction @Shoot => m_Wrapper.m_NormalSideScroll_Shoot;
+        public InputAction @AimUp => m_Wrapper.m_NormalSideScroll_AimUp;
+        public InputAction @AimDown => m_Wrapper.m_NormalSideScroll_AimDown;
+        public InputAction @Tongue => m_Wrapper.m_NormalSideScroll_Tongue;
         public InputActionMap Get() { return m_Wrapper.m_NormalSideScroll; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -333,6 +421,18 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnPause;
+                @Shoot.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnShoot;
+                @AimUp.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnAimUp;
+                @AimUp.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnAimUp;
+                @AimUp.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnAimUp;
+                @AimDown.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnAimDown;
+                @AimDown.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnAimDown;
+                @AimDown.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnAimDown;
+                @Tongue.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
+                @Tongue.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
+                @Tongue.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
             }
             m_Wrapper.m_NormalSideScrollActionsCallbackInterface = instance;
             if (instance != null)
@@ -355,6 +455,18 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @AimUp.started += instance.OnAimUp;
+                @AimUp.performed += instance.OnAimUp;
+                @AimUp.canceled += instance.OnAimUp;
+                @AimDown.started += instance.OnAimDown;
+                @AimDown.performed += instance.OnAimDown;
+                @AimDown.canceled += instance.OnAimDown;
+                @Tongue.started += instance.OnTongue;
+                @Tongue.performed += instance.OnTongue;
+                @Tongue.canceled += instance.OnTongue;
             }
         }
     }
@@ -385,5 +497,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         void OnDiceThrow(InputAction.CallbackContext context);
         void OnChargeJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnAimUp(InputAction.CallbackContext context);
+        void OnAimDown(InputAction.CallbackContext context);
+        void OnTongue(InputAction.CallbackContext context);
     }
 }

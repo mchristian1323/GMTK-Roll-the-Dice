@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Abilities
+namespace SideScrollControl.CharacterAbilities
 {
     public class Tongue : MonoBehaviour
     {
@@ -19,7 +19,16 @@ namespace Abilities
 
         LineRenderer myLineRenderer;
 
-        
+        //new tongue-> when the button is pressed, the tounge will travel towards the dice
+            //once it hits a certain range (possible circle mesurment spawn anim) it checks to see if the dice is also in that range and if so retract the dice towards berny along with the tounge at the same speed
+            //if no dice then just retract the tounge
+
+        //code order-
+        //retract dice
+        //retract dice at range
+        //tounge anim
+        //retract dice after tounge reaches total length
+        //tweek
 
         private void Start()
         {

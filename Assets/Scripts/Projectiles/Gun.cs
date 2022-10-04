@@ -33,5 +33,7 @@ namespace Projectile
 
             GetComponent<SpriteRenderer>().enabled = false;
         }
+
+        
     }
 }

@@ -7,7 +7,11 @@ namespace Dice.Cursed
     {
         RandomNumber myRandomNumber;
         Animator myAnimator;
-        BoxCollider2D myBoxCollider;
+
+        Rigidbody2D myRigidbody;
+
+        [Header("Collider")]
+        [SerializeField] BoxCollider2D baseCollider;
 
         [Header("Curses")]
         [SerializeField] GameObject monBomb;
@@ -23,10 +27,22 @@ namespace Dice.Cursed
         [SerializeField] Sprite five;
         [SerializeField] Sprite six;
 
+        [Header("Physics")]
+        [SerializeField] float floatTime = 2f;
+
         int rollCount;
+        bool momentumLoss;
+        IEnumerator gravityCoroutine;
+
+
+        private void Awake()
+        {
+            gravityCoroutine = GraviturgyDelayTimer();
+        }
 
         void Start()
         {
+            momentumLoss = false;
             rollCount = 1;
             myAnimator = GetComponent<Animator>();
             myRandomNumber = GetComponent<RandomNumber>();
@@ -40,14 +56,20 @@ namespace Dice.Cursed
             GetComponent<BoxCollider2D>().enabled = true;
         }
 
+        private void Update()
+        {
+            WallCollision();
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.tag == "Ground" || collision.tag == "Wall")
             {
                 FindObjectOfType<Audio.AudioManager>().Play("Dice Bounce");
             }
-            if(collision.tag == "Ground" && rollCount > 0)
-            {
+            if (collision.tag == "Ground" && rollCount > 0)
+            { 
+                //its not gonna hit the ground before it gets gravity, maybe have a bool that changes on first wall hit(then y velocity) and after decent
                 rollCount--;
                 CursedEffects(myRandomNumber.RandomGenerate());
             }
@@ -183,5 +205,38 @@ namespace Dice.Cursed
             //Instantiate(bigSlime, transform.position, Quaternion.identity);
             //drop the big slime on top of the dice
         }
+
+        private void WallCollision()
+        {
+            if(baseCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            {
+                momentumLoss = true;
+            }
+
+            if(momentumLoss)
+            {
+                StopCoroutine(gravityCoroutine);
+                myRigidbody.constraints = RigidbodyConstraints2D.None;
+                myRigidbody.gravityScale = 1f;
+                momentumLoss = false;
+            }
+        }
+
+        //public
+        public void GraviturgyAvoidance()
+        {
+            myRigidbody = GetComponent<Rigidbody2D>();
+            myRigidbody.gravityScale = 0;
+            myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
+            StartCoroutine(gravityCoroutine); //upon impact cancel prefab and change rigidbody velocity and gravity
+        }
+
+        IEnumerator GraviturgyDelayTimer()
+        {
+            yield return new WaitForSeconds(floatTime);
+            myRigidbody.constraints = RigidbodyConstraints2D.None;
+            myRigidbody.gravityScale = 1f;
+        }
+        
     }
 }
