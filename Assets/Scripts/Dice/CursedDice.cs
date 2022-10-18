@@ -215,7 +215,10 @@ namespace Dice.Cursed
 
             if(momentumLoss)
             {
-                StopCoroutine(gravityCoroutine);
+                if(gravityCoroutine != null)
+                {
+                    StopCoroutine(gravityCoroutine);
+                }
                 myRigidbody.constraints = RigidbodyConstraints2D.None;
                 myRigidbody.gravityScale = 1f;
                 momentumLoss = false;

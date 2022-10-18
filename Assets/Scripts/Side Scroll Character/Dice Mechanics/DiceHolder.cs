@@ -25,7 +25,7 @@ namespace DiceMechanics
             isHoldingDice = true;
         }
 
-        private void HoldCheck()
+        public void HoldCheck()
         {
             isHoldingDice = !isHoldingDice;
 
@@ -74,6 +74,7 @@ namespace DiceMechanics
                 //thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, throwkick); //old toss
                 yourDice.GetComponent<Dice.Cursed.CursedDice>().GraviturgyAvoidance();
                 thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, 0);
+                
 
                 //throw properties-
                     //need sound effect and maybe some burning animss

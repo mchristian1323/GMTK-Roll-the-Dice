@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SideScrollControl.CharacterAbilities
@@ -20,6 +19,8 @@ namespace SideScrollControl.CharacterAbilities
         Vector2 retractNewPos;
         Vector2 retractCurrentPos;
 
+        IEnumerator tongueCoroutine;
+
         private void Awake()
         {
             myLineRenderer = GetComponent<LineRenderer>();
@@ -31,7 +32,17 @@ namespace SideScrollControl.CharacterAbilities
             myLineRenderer.enabled = true;
             myLineRenderer.positionCount = 2;
 
-            StartCoroutine(TongueGrapple(grappleSpeed, target));
+            tongueCoroutine = TongueGrapple(grappleSpeed, target);
+
+            StartCoroutine(tongueCoroutine);
+        }
+
+        public void TongueCancel()
+        {
+            StopCoroutine(tongueCoroutine);
+            myLineRenderer.enabled = false;
+            retracting = false;
+            isGrappling = false;
         }
 
         IEnumerator TongueGrapple(float grappleSeed, Vector2 target)
@@ -43,7 +54,7 @@ namespace SideScrollControl.CharacterAbilities
 
             Vector2 newPos;
 
-            for(; t < time; t += grappleSeed + Time.deltaTime)
+            for(; t < time; t += grappleSeed + Time.deltaTime) //tongue needs to move with character
             {
                 newPos = Vector2.Lerp(transform.position, target, t);
                 myLineRenderer.SetPosition(0, transform.position);
@@ -52,27 +63,22 @@ namespace SideScrollControl.CharacterAbilities
             }
 
             myLineRenderer.SetPosition(1, target);
-            retracting = true;
             retractCurrentPos = target;
-        }
 
-        private void Update()
-        {
-            if(retracting)
+            float d = 0;
+
+            for (; d < 10; d += 10 + Time.deltaTime)
             {
-                for (float t = 0; t < 10; t += 10 + Time.deltaTime)
-                {
-                    retractNewPos = Vector2.Lerp(retractCurrentPos, transform.position, t);
-                    myLineRenderer.SetPosition(0, transform.position);
-                    myLineRenderer.SetPosition(1, retractNewPos);
-                }
-                myLineRenderer.SetPosition(1, transform.position);
-                retracting = false;
-                isGrappling = false;
-                myLineRenderer.enabled = false;
+                retractNewPos = Vector2.Lerp(retractCurrentPos, transform.position, t);
+                myLineRenderer.SetPosition(0, transform.position);
+                myLineRenderer.SetPosition(1, retractNewPos);
+                yield return null;
             }
+            myLineRenderer.SetPosition(1, transform.position);
+            retracting = false;
+            isGrappling = false;
+            myLineRenderer.enabled = false;
         }
-
 
         public bool GetGrappleStatus()
         {
