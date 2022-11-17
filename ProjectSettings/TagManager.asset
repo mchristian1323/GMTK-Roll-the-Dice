@@ -7,13 +7,12 @@ TagManager:
   - Ground
   - Dice
   - Damage
-  - Soft Enemy
   - Player Feet
-  - Hard Enemy
   - Shot
   - Goblin
   - SpawnSpot
   - Deadly
+  - Enemy
   layers:
   - Default
   - TransparentFX

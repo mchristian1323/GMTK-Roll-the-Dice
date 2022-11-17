@@ -13,30 +13,38 @@ namespace Dice.Cursed
         [Header("Collider")]
         [SerializeField] BoxCollider2D baseCollider;
 
-        [Header("Curses")]
+        [Header("Curses")] //will probably remove
         [SerializeField] GameObject monBomb;
         [SerializeField] GameObject airBlast;
         [SerializeField] GameObject deadlyAura;
         [SerializeField] GameObject bigSlime;
 
-        [Header("Results")]
+        [Header("Results")] 
         [SerializeField] Sprite one;
         [SerializeField] Sprite two;
         [SerializeField] Sprite three;
         [SerializeField] Sprite four;
         [SerializeField] Sprite five;
         [SerializeField] Sprite six;
+        [SerializeField] Sprite broken;
 
         [Header("Physics")]
         [SerializeField] float floatTime = 2f;
+        [SerializeField] float enemyBounce = 10f;
+
+        //physics
+        float speed;
+        float damage;
+        float accel; //max speed to slow down from
+        float popAccel;
 
         int rollCount;
         bool momentumLoss;
         IEnumerator gravityCoroutine;
 
-
         private void Awake()
         {
+            myRigidbody = GetComponent<Rigidbody2D>();
             gravityCoroutine = GraviturgyDelayTimer();
         }
 
@@ -52,8 +60,15 @@ namespace Dice.Cursed
         IEnumerator CollideDelay()
         {
             GetComponent<BoxCollider2D>().enabled = false;
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.1f);
             GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        public void DropDicePhysics()
+        {
+            StopCoroutine(gravityCoroutine);
+            myRigidbody.constraints = RigidbodyConstraints2D.None;
+            myRigidbody.gravityScale = 1f;
         }
 
         private void Update()
@@ -73,50 +88,58 @@ namespace Dice.Cursed
                 rollCount--;
                 CursedEffects(myRandomNumber.RandomGenerate());
             }
-            if(collision.tag == "Deadly")
+            if(collision.tag == "Enemy")
             {
-                //BreakDice();
+                //play sound
+                //need pep with the pop and the throw, 
+                myRigidbody.velocity = new Vector2(0f, enemyBounce);
+
+                StopCoroutine(gravityCoroutine);
+                myRigidbody.constraints = RigidbodyConstraints2D.None;
+                myRigidbody.gravityScale = 1f;
             }
         }
         
+        //when called, send through the number. activate a ui element that spawns anumber that swirls towards the ui spot for numbers
+        //then send to the player and have the plaeyr give ui the remanding information
         private void CursedEffects(int numberRolled)
         {
             switch(numberRolled)
             {
                 case 1:
                     myAnimator.SetTrigger("1");
-                    ExplosionOfEnemies();
+
                     //GameObject.Find("Player").GetComponent<SideScrollControl.SideScrollControls >().DisplayDice(one);
                     break;
 
                 case 2:
                     myAnimator.SetTrigger("2");
                     //GameObject.Find("Player").GetComponent<SideScrollControl.SideScrollControls>().DisplayDice(two);
-                    AirBlast();
+
                     break;
 
                 case 3:
                     myAnimator.SetTrigger("3");
                     //GameObject.Find("Player").GetComponent<SideScrollControl.SideScrollControls>().DisplayDice(three);
-                    DeadlyEnemies();
+
                     break;
 
                 case 4:
                     myAnimator.SetTrigger("4");
                     //GameObject.Find("Player").GetComponent<SideScrollControl.SideScrollControls>().DisplayDice(four);
-                    OverChargeMoves();
+
                     break;
 
                 case 5:
                     myAnimator.SetTrigger("5");
                     //GameObject.Find("Player").GetComponent<SideScrollControl.SideScrollControls>().DisplayDice(five);
-                    BigSlime();
+
                     break;
 
                 case 6:
                     myAnimator.SetTrigger("6");
                     //GameObject.Find("Player").GetComponent<SideScrollControl.SideScrollControls>().DisplayDice(six);
-                    Gun();
+
                     break;
 
                 case 7:
@@ -240,6 +263,5 @@ namespace Dice.Cursed
             myRigidbody.constraints = RigidbodyConstraints2D.None;
             myRigidbody.gravityScale = 1f;
         }
-        
     }
 }

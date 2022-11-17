@@ -1,6 +1,7 @@
 ﻿using Dice.Cursed;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 namespace DiceMechanics
@@ -14,15 +15,19 @@ namespace DiceMechanics
         [SerializeField] float throwkick;
 
         //public
-        public bool isHoldingDice;
+        public bool isHoldingDice; //need to make this a get
 
         //private
         GameObject yourDice;
+        private bool canThrow;
         //IEnumerator animationTime;
+
+        int[] numberCompendium;
 
         private void Start()
         {
             isHoldingDice = true;
+            canThrow = true;
         }
 
         public void HoldCheck()
@@ -33,6 +38,7 @@ namespace DiceMechanics
             {
                 //need to set velocity
                 yourDice = Instantiate(dicePrefab, transform.position, Quaternion.identity);
+                yourDice.GetComponent<CursedDice>().DropDicePhysics();
                 Rigidbody2D thisRigidBody = yourDice.GetComponent<Rigidbody2D>();
                 thisRigidBody.AddRelativeForce(new Vector2(0f + Random.Range(-5, 5), 1f) * diceKick);
             }
@@ -61,23 +67,29 @@ namespace DiceMechanics
             }
         }
 
-        public void ThrowHeldDice()
+        public void ThrowHeldDice(float power)
         {
-            if(isHoldingDice)
+            if(isHoldingDice && canThrow)
             {
                 isHoldingDice = false;
-                //animationTime = AnimSlowDown();
-                //StartCoroutine(animationTime);
+
                 StartCoroutine(AnimSlowDown());
+
                 yourDice = Instantiate(dicePrefab, throwPoint.position, Quaternion.identity);
                 Rigidbody2D thisRigidBody = yourDice.GetComponent<Rigidbody2D>();
-                //thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, throwkick); //old toss
+
+                power = Mathf.Round(power);
+
+                if(power < 1)
+                {
+                    power = 1;
+                }
+
                 yourDice.GetComponent<Dice.Cursed.CursedDice>().GraviturgyAvoidance();
-                thisRigidBody.velocity = new Vector2(throwkick * transform.localScale.x, 0);
-                
+                thisRigidBody.velocity = new Vector2((throwkick * power) * transform.localScale.x, 0);
 
                 //throw properties-
-                    //need sound effect and maybe some burning animss
+                    //need sound effect and maybe some burning animss (burning animes display power level
                     //need to delay movement during animation (yield return)
                     //maybe have float time settled here
                     
@@ -95,6 +107,29 @@ namespace DiceMechanics
             GetComponent<SideScrollControl.PlayerSideScrollControls>().SetVelocityForAnimation(0, false);
             yield return new WaitForSeconds(.5f);
             GetComponent<SideScrollControl.PlayerSideScrollControls>().SetVelocityForAnimation(10, true);
+        }
+
+        public void numberStorage(int newNumber)
+        {
+            // make a list
+            //store the new number in them
+                //maybe make this a new script
+                //have the numbers be taken out and searched for
+
+            //probably have the system search for proper number combinations as new numbers are entered into the system
+            //maybe have scriptable objects for the effects so that they could theoretically be interchangeble
+        }
+
+        public void PauseMove()
+        {
+            canThrow = false;
+            StartCoroutine(PauseReset());
+        }
+
+        IEnumerator PauseReset()
+        {
+            yield return new WaitForSeconds(1.5f);
+            canThrow = true;
         }
 
         public bool GetDiceHoldInfo()

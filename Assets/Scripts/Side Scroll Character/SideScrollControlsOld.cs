@@ -322,7 +322,7 @@ namespace SideScrollControl
         //Moves
         public void OnDiceThrow(InputAction.CallbackContext context)
         {
-            GetComponent<DiceMechanics.DiceHolder>().ThrowHeldDice();
+            GetComponent<DiceMechanics.DiceHolder>().ThrowHeldDice(5f);
 
             myAnimator.SetTrigger("Throw Dice");
         }

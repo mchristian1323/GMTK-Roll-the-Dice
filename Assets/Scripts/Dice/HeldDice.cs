@@ -8,6 +8,7 @@ namespace DiceMechanics
     {
         [SerializeField] GameObject hands;
         [SerializeField] GameObject dice;
+        [SerializeField] GameObject diceChargeAnim;
 
         Animator diceAnimator;
         DiceHolder myDiceHolder;
@@ -27,11 +28,12 @@ namespace DiceMechanics
         {
             VisableHands();
             MovingHands();
+            DiceChargeThrow();
         }
 
         private void VisableHands()
         {
-            if(!myDiceHolder.isHoldingDice)
+            if(!myDiceHolder.isHoldingDice || mySideScrollControls.GetDiceThrowActive() || mySideScrollControls.GetIdleStatusAnim())
             {
                 hands.SetActive(false);
                 dice.SetActive(false);
@@ -47,13 +49,27 @@ namespace DiceMechanics
 
         private void MovingHands()
         {
-            if (mySideScrollControls.isMoving && haveHands)
+            if (mySideScrollControls.GetMoveStatusAnim() && haveHands)
             {
                 diceAnimator.SetBool("Moving", true);
             }
             else
             {
                 diceAnimator.SetBool("Moving", false);
+            }
+        }
+
+        private void DiceChargeThrow()
+        {
+            //add another animation and speed it up depending on the power of the dice
+            if(mySideScrollControls.GetDiceThrowActive())
+            {
+                diceChargeAnim.SetActive(true);
+                diceChargeAnim.GetComponent<Animator>().speed = Mathf.Round(mySideScrollControls.GetDicePowerLevel());
+            }
+            else
+            {
+                diceChargeAnim.SetActive(false);
             }
         }
     }

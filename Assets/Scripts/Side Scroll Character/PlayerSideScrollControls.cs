@@ -5,6 +5,9 @@ using Audio;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
 using UnityEditor;
+using System;
+using DiceMechanics;
+
 
 namespace SideScrollControl
 {
@@ -19,13 +22,18 @@ namespace SideScrollControl
         [SerializeField] int jumpBufferFramesTotal = 4;
         [SerializeField] int cayoteFramesTotal = 4;
 
+        [Header("Idle Anim")]
+        [SerializeField] float idleMaxTime = 10f;
+
         //public
-        [HideInInspector] public bool isMoving;
+        [HideInInspector] public bool isMoving; //might want to not have this be public
 
         //private
         Vector2 controllerMovement;
         float xThrow;
         bool canMove;
+        bool moveIsBeingPressed = false;
+        bool moveAnimCheck;
 
         bool jumpPressed;
         bool hasJumped;
@@ -34,17 +42,28 @@ namespace SideScrollControl
 
         bool onLand;
 
+        float idleTimeCount;
+        bool idleActive;
+        int randomIdle = 0;
+
         //game specific
         [Header("UI")]
         [SerializeField] UI.MenuManager myMenuManager;
         [Header("Character Attatchments")]
         [SerializeField] Projectile.Gun bernieGun;
+        [SerializeField] float chargeRate = 1;
+        [SerializeField] float chargeMax;
+
+        float chargeDiceCounter = 0;
+        bool chargeDiceActive = false;
 
         //initializers
         Rigidbody2D myRigidbody;
         Animator myAnimator;
         PlayerInput myPlayerInput;
         BoxCollider2D myBoxCollider;
+        PlayerStateManager myPlayerStateManager;
+        DiceHolder myDiceHolder;
 
         // Start is called before the first frame update
         void Awake()
@@ -53,6 +72,8 @@ namespace SideScrollControl
             myRigidbody = GetComponent<Rigidbody2D>();
             myAnimator = GetComponent<Animator>();
             myBoxCollider = GetComponent<BoxCollider2D>();
+            myPlayerStateManager = GetComponent<PlayerStateManager>();
+            myDiceHolder = GetComponent<DiceHolder>();
 
             //controller actions
             myPlayerInput.actions["jump"].started += OnJump;
@@ -62,6 +83,7 @@ namespace SideScrollControl
 
             //new controller actions
             myPlayerInput.actions["DiceThrow"].started += OnDiceThrow;
+            myPlayerInput.actions["DiceThrow"].canceled += OnDiceThrow;
             myPlayerInput.actions["Pause"].started += OnPause;
         }
 
@@ -69,8 +91,11 @@ namespace SideScrollControl
         {
             canMove = true;
             hasJumped = false;
+            idleTimeCount = idleMaxTime;
+            idleActive = false;
             jumpBufferFrames = jumpBufferFramesTotal + 1;
             cayoteFramesTotal = cayoteFramesTotal + 1;
+            myAnimator.SetBool("CanMove", true);
         }
 
         // Update is called once per frame
@@ -80,6 +105,17 @@ namespace SideScrollControl
             {
                 AdvancedJumpCalculations();
             }
+            if(chargeDiceActive)
+            {
+                if(chargeDiceCounter < chargeMax)
+                {
+                    chargeDiceCounter += chargeRate * Time.deltaTime;
+
+                    //every whole number activate animation/ui element
+                }
+            }
+
+            IdleAnimationSetter();
         }
 
         private void FixedUpdate()
@@ -100,7 +136,7 @@ namespace SideScrollControl
         //controller functions
         public void OnMoveDetect(InputAction.CallbackContext context) //public for player input event
         {
-            if(canMove)
+            if (canMove)
             {
                 if (context.phase == InputActionPhase.Started)
                 {
@@ -113,6 +149,14 @@ namespace SideScrollControl
                     isMoving = false;
                     FindObjectOfType<AudioManager>().Stop("Bernie Feet");
                 }
+            }
+            if(context.phase == InputActionPhase.Started)
+            {
+                moveIsBeingPressed = true;
+            }
+            if(context.phase == InputActionPhase.Canceled)
+            {
+                moveIsBeingPressed = false;
             }
         }
 
@@ -134,7 +178,6 @@ namespace SideScrollControl
                 if (context.phase == InputActionPhase.Canceled) //when button is not pressed
                 {
                     jumpPressed = false;
-
                 }
             }
         }
@@ -142,10 +185,26 @@ namespace SideScrollControl
                 //new controller functionss
         private void OnDiceThrow(InputAction.CallbackContext context)
         {
-            //old
-            GetComponent<DiceMechanics.DiceHolder>().ThrowHeldDice();
+            if(myDiceHolder.isHoldingDice)
+            {
+                if (context.phase == InputActionPhase.Started)
+                {
+                    //build power, stop movement
+                    myAnimator.SetTrigger("Charge Dice");
+                    chargeDiceCounter = 0;
+                    chargeDiceActive = true;
+                    myPlayerStateManager.PauseMovement();
 
-            myAnimator.SetTrigger("Throw Dice");
+                }
+
+                if (context.phase == InputActionPhase.Canceled)
+                {
+                    GetComponent<DiceMechanics.DiceHolder>().ThrowHeldDice(chargeDiceCounter); //pass power
+                    chargeDiceActive = false;
+                    myAnimator.SetTrigger("Throw Dice");
+                    myPlayerStateManager.ResumeMovement();
+                }
+            }
         }
 
         private void OnPause(InputAction.CallbackContext context)
@@ -157,9 +216,18 @@ namespace SideScrollControl
         private void Movement()
         {
             //gets and sets movement data
-            myAnimator.SetBool("Moving", isMoving);
             xThrow = controllerMovement.x;
 
+            //prevents bernie from moon walkign when both directions are pressed
+            if (isMoving && xThrow != 0)
+                moveAnimCheck = true;
+            else
+                moveAnimCheck = false;
+
+            if (canMove)
+            {
+                myAnimator.SetBool("Moving", moveAnimCheck);
+            }
 
             //applies movement
             Vector2 playerVelocity = new Vector2(xThrow * playerBaseSpeed, myRigidbody.velocity.y);
@@ -174,7 +242,7 @@ namespace SideScrollControl
 
         private void TouchDetecter()
         {
-            if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) && myRigidbody.velocity.y == 0) //checkes for ground and prevents wall and double jump
+            if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) //checkes for ground and prevents wall and double jump
             {
                 onLand = true;
             }
@@ -223,9 +291,11 @@ namespace SideScrollControl
                 cayoteFrames++;
             }
         }
+
         public void PauseMove()
         {
-            canMove = false;
+            myPlayerStateManager.PauseMovement();
+
             if (myBoxCollider.enabled == true)
             {
                 StartCoroutine(PauseReset());
@@ -234,10 +304,8 @@ namespace SideScrollControl
 
         IEnumerator PauseReset()
         {
-            //myBoxCollider.enabled = false;
             yield return new WaitForSeconds(1.5f);
-            //myBoxCollider.enabled = true;
-            canMove = true;
+            myPlayerStateManager.ResumeMovement();
         }
 
         //Animation functions
@@ -245,9 +313,12 @@ namespace SideScrollControl
         {
             bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
 
-            if (playerHasHorizontalSpeed)
+            if(canMove)
             {
-                transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x), 1f);
+                if (playerHasHorizontalSpeed)
+                {
+                    transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x), 1f);
+                }
             }
         }
 
@@ -269,6 +340,31 @@ namespace SideScrollControl
             }
         }
 
+        private void IdleAnimationSetter()
+        {
+            //need to add gun stuff
+            if(canMove && !isMoving && !hasJumped)
+            { idleTimeCount -= Time.deltaTime; }
+            else { idleTimeCount = idleMaxTime; }
+
+            if (idleTimeCount <= 0)
+            {
+                if(randomIdle == 0)
+                {
+                    randomIdle = UnityEngine.Random.Range(1, 4);
+                }
+                idleActive = true;
+                myAnimator.SetInteger("AfkNum", randomIdle);
+                myAnimator.SetBool("AFK", idleActive);
+            }
+            else 
+            {
+                idleActive = false;
+                myAnimator.SetBool("AFK", idleActive);
+                randomIdle = 0;
+            }
+        }
+
         //setters and getters
         public void ChangeMoveStatus(bool change)
         {
@@ -280,6 +376,42 @@ namespace SideScrollControl
             canMove = toggleMove;
             myRigidbody.gravityScale = gravity;
             myRigidbody.velocity = Vector2.zero;
+        }
+
+        public void SetMovementState(bool currentState)
+        {
+            canMove = currentState;
+            myAnimator.SetBool("CanMove", currentState);
+            if(!currentState)
+                FindObjectOfType<AudioManager>().Stop("Bernie Feet");
+
+            if (moveIsBeingPressed)
+                isMoving = true;
+        }
+
+        public void ResetIdleTime()
+        {
+            idleTimeCount = idleMaxTime;
+        }
+
+        public bool GetDiceThrowActive()
+        {
+            return chargeDiceActive;
+        }
+
+        public float GetDicePowerLevel()
+        {
+            return chargeDiceCounter;
+        }
+
+        public bool GetMoveStatusAnim() //for animations child under the main object
+        {
+            return moveAnimCheck;
+        }
+
+        public bool GetIdleStatusAnim()
+        {
+            return idleActive;
         }
     }
 }

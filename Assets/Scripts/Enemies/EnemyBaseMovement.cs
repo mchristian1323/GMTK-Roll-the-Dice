@@ -6,9 +6,13 @@ namespace Enemy
 {
     public class EnemyBaseMovement : MonoBehaviour
     {
+        [Header("Health and Damage Stats")]
+        [SerializeField] float health;
+        [SerializeField] float damage = 10;
+
         public float moveSpeed;
         Rigidbody2D myRigidbody;
-        [SerializeField] GameObject charge;
+        //[SerializeField] GameObject charge;
 
         // Start is called before the first frame update
         void Start()
@@ -19,7 +23,7 @@ namespace Enemy
         // Update is called once per frame
         void Update()
         {
-            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
+            //myRigidbody.velocity = new Vector2(moveSpeed, 0f);
         }
 
         public void FlipEnemyFacing()
@@ -35,7 +39,7 @@ namespace Enemy
 
         public void CurseMode()
         {
-            charge.SetActive(true);
+            //charge.SetActive(true);
             gameObject.layer = LayerMask.NameToLayer("Deadly");
             gameObject.tag = "Deadly";
         }

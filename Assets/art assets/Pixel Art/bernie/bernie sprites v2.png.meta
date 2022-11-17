@@ -1,0 +1,632 @@
+fileFormatVersion: 2
+guid: 38e81a4284441dd45acb624e3aaf2e2c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6767499718916009309
+    second: bernie sprites v2_0
+  - first:
+      213: 2548515779140698506
+    second: bernie sprites v2_1
+  - first:
+      213: -2768764163878463550
+    second: bernie sprites v2_2
+  - first:
+      213: 66373430197804645
+    second: bernie sprites v2_3
+  - first:
+      213: 2467133697690077900
+    second: bernie sprites v2_4
+  - first:
+      213: -6509024012438395154
+    second: bernie sprites v2_5
+  - first:
+      213: 4361623368171564721
+    second: bernie sprites v2_6
+  - first:
+      213: 8795199286315193950
+    second: bernie sprites v2_7
+  - first:
+      213: -2322946345632277716
+    second: bernie sprites v2_8
+  - first:
+      213: 4356801159451866489
+    second: bernie sprites v2_9
+  - first:
+      213: 6342530974158834247
+    second: bernie sprites v2_10
+  - first:
+      213: 7642493753090563626
+    second: bernie sprites v2_11
+  - first:
+      213: -2940997004090396526
+    second: bernie sprites v2_12
+  - first:
+      213: -3258700277822164916
+    second: bernie sprites v2_13
+  - first:
+      213: 3100974853467295544
+    second: bernie sprites v2_14
+  - first:
+      213: 4643478814244977821
+    second: bernie sprites v2_15
+  - first:
+      213: 6949295981822804054
+    second: bernie sprites v2_16
+  - first:
+      213: -4516342403492633879
+    second: bernie sprites v2_17
+  - first:
+      213: 1431668177993353926
+    second: bernie sprites v2_18
+  - first:
+      213: -2620925773411146637
+    second: bernie sprites v2_19
+  - first:
+      213: -1894823186898585661
+    second: bernie sprites v2_20
+  - first:
+      213: -6237724954154354137
+    second: bernie sprites v2_21
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bernie sprites v2_0
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 3358
+        width: 263
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a294748cd20512a0800000000000000
+      internalID: -6767499718916009309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_1
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 3369
+        width: 263
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81c82839952e5320800000000000000
+      internalID: 2548515779140698506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_2
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 3358
+        width: 263
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7513999af5399d0800000000000000
+      internalID: -2768764163878463550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_3
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 3369
+        width: 263
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56ed679784ecbe000800000000000000
+      internalID: 66373430197804645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_4
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 2719
+        width: 263
+        height: 283
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca8630d6050d3220800000000000000
+      internalID: 2467133697690077900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_5
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 2728
+        width: 263
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee62f10a52d4ba5a0800000000000000
+      internalID: -6509024012438395154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_6
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 2739
+        width: 263
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bea8ef2859978c30800000000000000
+      internalID: 4361623368171564721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_7
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 2719
+        width: 263
+        height: 262
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e561695e623de0a70800000000000000
+      internalID: 8795199286315193950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_8
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 2079
+        width: 263
+        height: 342
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2bdb4c2b9c33cfd0800000000000000
+      internalID: -2322946345632277716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_9
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 2089
+        width: 263
+        height: 332
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 975732a3297767c30800000000000000
+      internalID: 4356801159451866489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_10
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 2098
+        width: 263
+        height: 343
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a46ab1152350850800000000000000
+      internalID: 6342530974158834247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_11
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 2079
+        width: 263
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2eda17a3979f0a60800000000000000
+      internalID: 7642493753090563626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_12
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1449
+        width: 263
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29034bd8eca7f27d0800000000000000
+      internalID: -2940997004090396526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_13
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 1459
+        width: 263
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4071f6dc55c6c2d0800000000000000
+      internalID: -3258700277822164916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_14
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 1438
+        width: 263
+        height: 283
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83f46561330e80b20800000000000000
+      internalID: 3100974853467295544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_15
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 1438
+        width: 433
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9cbf1d1163f07040800000000000000
+      internalID: 4643478814244977821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_16
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 799
+        width: 452
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 650099360ebd07060800000000000000
+      internalID: 6949295981822804054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_17
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 799
+        width: 474
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e2a9cb338ab251c0800000000000000
+      internalID: -4516342403492633879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_18
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 799
+        width: 434
+        height: 343
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ca46816f9e4ed310800000000000000
+      internalID: 1431668177993353926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_19
+      rect:
+        serializedVersion: 2
+        x: 2099
+        y: 819
+        width: 283
+        height: 263
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 374a92535e990abd0800000000000000
+      internalID: -2620925773411146637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_20
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 289
+        width: 32
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c77cb8c95c34b5e0800000000000000
+      internalID: -1894823186898585661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bernie sprites v2_21
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 152
+        width: 479
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72a3a0df3362f69a0800000000000000
+      internalID: -6237724954154354137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

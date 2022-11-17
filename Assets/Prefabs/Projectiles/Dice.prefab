@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 1858376464008345922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1858376463151937748}
   m_Father: {fileID: 0}
@@ -133,7 +133,7 @@ SpriteRenderer:
   m_SortingLayerID: -171226419
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4057697981180691472, guid: e2dbc70a45fa63f4e8a8f69825b63d13,
+  m_Sprite: {fileID: 8582726763475365166, guid: 92e944161a88f8b44b52ca01f6cd62da,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -162,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.18}
+    oldSize: {x: 0.65, y: 0.65}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -190,7 +190,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1858376464008345924
 MonoBehaviour:
@@ -231,6 +231,7 @@ MonoBehaviour:
   four: {fileID: -4659526778356854066, guid: b22e26a08f7b6664e9cd34e14012ced2, type: 3}
   five: {fileID: 4086501517172541447, guid: b22e26a08f7b6664e9cd34e14012ced2, type: 3}
   six: {fileID: -6926972503723164909, guid: b22e26a08f7b6664e9cd34e14012ced2, type: 3}
+  broken: {fileID: 0}
   floatTime: 1.5
 --- !u!95 &1012044749076629380
 Animator:

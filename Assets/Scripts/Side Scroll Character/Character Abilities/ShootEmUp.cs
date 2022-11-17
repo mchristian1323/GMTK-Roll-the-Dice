@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace SideScrollControl.CharacterAbilities
@@ -13,16 +15,21 @@ namespace SideScrollControl.CharacterAbilities
         [SerializeField] GameObject Bullet;
 
         [Header("Gun Anim")]
-        [SerializeField]SpriteRenderer gunSpriteRenderer;
+        [SerializeField] SpriteRenderer gunSpriteRenderer;
 
         [Header("Bullet Physics")]
-        [SerializeField] int baseAmmoCount = 6;
-        [SerializeField] int baseDamage = 10;
-        [SerializeField] float baseShotSpeed = 10f;
+        [SerializeField] int baseAmmoCount = 6; //how much
+        [SerializeField] int baseDamage = 10; //how hard
+        [SerializeField] float baseShotSpeed = 10f; //how fast
+        //how far
+        //how big
+        //color
+        //sprite
 
         [Header("Gun Physics")]
         [SerializeField] float baseReloadTime;
         [SerializeField] Transform businessEnd;
+        [SerializeField] GameObject muzzleFlash;
 
         //Initialized
         PlayerInput myPlayerInput;
@@ -36,6 +43,9 @@ namespace SideScrollControl.CharacterAbilities
         float reloadBuffer;
 
         float direction;
+
+        //events
+        public event EventHandler OnBulletInteraction;
 
         //have a bool that changes the launch point depending on if the player is holding up or down
 
@@ -81,6 +91,7 @@ namespace SideScrollControl.CharacterAbilities
                     //fire gun and play anim
                     GameObject shot = Instantiate(Bullet, businessEnd.position, Quaternion.identity);
                     shot.GetComponent<Projectile.Projectile>().SetPhysics(chamberShotSpeed, direction);
+                    GameObject flash = Instantiate(muzzleFlash, businessEnd.position, Quaternion.identity);
                     //play sound
 
                     //reduce ammo
@@ -88,11 +99,26 @@ namespace SideScrollControl.CharacterAbilities
 
                     //reset reload timer
                     reloadBuffer = baseReloadTime;
+
+                    //update animation
+                    OnBulletInteraction?.Invoke(this, EventArgs.Empty);
                 }
             }
             //consider the ability to change shooting styles
             //possibly have if/switch statements that go through different options under can shoot
             //beyond change of ammo count and bullet physics
+        }
+
+        public void PauseMove()
+        {
+            canShoot = false;
+            StartCoroutine(PauseReset());
+        }
+
+        IEnumerator PauseReset()
+        {
+            yield return new WaitForSeconds(1.5f);
+            canShoot = true;
         }
 
         //private
@@ -112,18 +138,33 @@ namespace SideScrollControl.CharacterAbilities
             {
                 reloadBuffer = baseReloadTime;
                 chamberAmmo++;
+                OnBulletInteraction?.Invoke(this, EventArgs.Empty);
             }
-
-            UnityEngine.Debug.Log(chamberAmmo + " " + reloadBuffer);
 
             //idea two
             //if reload is pressed, add a bullet every .25 seconds until full
         }
 
         //getters and setters
-        public int GetChamgerAmmo()
+        public int GetChamberAmmo()
         {
             return chamberAmmo;
+        }
+
+        //possibly have a second variable that gets effected so that the bases never change
+        public void SetBaseAmmo(int newAmmoCount)
+        {
+            baseAmmoCount = newAmmoCount;
+        }
+
+        public void SetDamage(int newDamage)
+        {
+            baseDamage = newDamage;
+        }
+
+        public void SetSpeed(float newSpeed)
+        {
+            baseShotSpeed = newSpeed;
         }
     }
 }

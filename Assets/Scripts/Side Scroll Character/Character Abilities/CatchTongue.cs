@@ -123,7 +123,6 @@ namespace SideScrollControl.CharacterAbilities
             findDice = state;
         }
 
-
         //at the peak of the tongue lash the dice needs to be caught if within a certain radius
             //delay it until the peak
             //if dice is detected snap it to the character or call the dice functionallity
