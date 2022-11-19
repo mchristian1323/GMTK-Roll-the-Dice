@@ -557,6 +557,7 @@ GameObject:
   - component: {fileID: 7298171895301187210}
   - component: {fileID: 8548210312219725064}
   - component: {fileID: 7298171895301187211}
+  - component: {fileID: 8775301198904638202}
   - component: {fileID: 3600222516463294367}
   - component: {fileID: 1544174942}
   m_Layer: 8
@@ -835,6 +836,7 @@ MonoBehaviour:
   playerJumpForce: 25
   jumpBufferFramesTotal: 4
   cayoteFramesTotal: 4
+  idleMaxTime: 10
   isMoving: 0
   myMenuManager: {fileID: 0}
   bernieGun: {fileID: 3988688598778713876}
@@ -886,6 +888,18 @@ MonoBehaviour:
   throwPoint: {fileID: 8323674383782379842}
   throwkick: 6
   isHoldingDice: 0
+--- !u!114 &8775301198904638202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7298171895301187215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0adf81e54615bc4986a57ff95fd7a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3600222516463294367
 MonoBehaviour:
   m_ObjectHideFlags: 0

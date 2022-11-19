@@ -21,10 +21,16 @@ namespace DiceMechanics
 
         public void NumberEnter(int newNumber)
         {
-            //make a list
             //have a list of scriptable objects
+            numberSpellBook.Add(newNumber);
             //scan the numbers from the SO
             //then scan the numbers and see if you have matches
+
+            //ui
+            for(int i = 0; i < numberSpellBook.Count; i++)
+            {
+
+            }
         }
 
         //when all 3 bad effect slots are full, a bad effect happens
@@ -35,5 +41,13 @@ namespace DiceMechanics
                 //need a way to decrement
             //when at 3 cause one of the random bad effects
         }
+
+        //getters and setters
+        public int GetNumberListCount()
+        {
+            return numberSpellBook.Count;
+        }
+
+
     }
 }

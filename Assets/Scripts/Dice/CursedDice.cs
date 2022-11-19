@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using DiceMechanics;
 
 namespace Dice.Cursed
 {
@@ -37,6 +38,8 @@ namespace Dice.Cursed
         float damage;
         float accel; //max speed to slow down from
         float popAccel;
+
+        DiceHolder berny;
 
         int rollCount;
         bool momentumLoss;
@@ -93,17 +96,28 @@ namespace Dice.Cursed
                 //play sound
                 //need pep with the pop and the throw, 
                 myRigidbody.velocity = new Vector2(0f, enemyBounce);
-
+                CursedEffects(myRandomNumber.RandomGenerate());
                 StopCoroutine(gravityCoroutine);
                 myRigidbody.constraints = RigidbodyConstraints2D.None;
                 myRigidbody.gravityScale = 1f;
             }
+        }
+
+        public void SetOwner(DiceHolder owner)
+        {
+            berny = owner;
         }
         
         //when called, send through the number. activate a ui element that spawns anumber that swirls towards the ui spot for numbers
         //then send to the player and have the plaeyr give ui the remanding information
         private void CursedEffects(int numberRolled)
         {
+            if(berny != null)
+            {
+                berny.numberStorage(numberRolled);
+            }
+
+            //may not need this
             switch(numberRolled)
             {
                 case 1:

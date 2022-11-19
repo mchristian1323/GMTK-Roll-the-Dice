@@ -13,5 +13,4 @@ namespace SideScrollControl
             myAmmoUI.SetShootEmUp(GetComponent<ShootEmUp>());
         }
     }
-
 }

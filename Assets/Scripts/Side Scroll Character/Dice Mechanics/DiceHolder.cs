@@ -17,17 +17,19 @@ namespace DiceMechanics
         //public
         public bool isHoldingDice; //need to make this a get
 
+        //
+        NumberCaster myNumberCaster;
+
         //private
         GameObject yourDice;
         private bool canThrow;
         //IEnumerator animationTime;
 
-        int[] numberCompendium;
-
         private void Start()
         {
             isHoldingDice = true;
             canThrow = true;
+            myNumberCaster = GetComponent<NumberCaster>();
         }
 
         public void HoldCheck()
@@ -77,6 +79,7 @@ namespace DiceMechanics
 
                 yourDice = Instantiate(dicePrefab, throwPoint.position, Quaternion.identity);
                 Rigidbody2D thisRigidBody = yourDice.GetComponent<Rigidbody2D>();
+                yourDice.GetComponent<CursedDice>().SetOwner(this);
 
                 power = Mathf.Round(power);
 
@@ -111,13 +114,7 @@ namespace DiceMechanics
 
         public void numberStorage(int newNumber)
         {
-            // make a list
-            //store the new number in them
-                //maybe make this a new script
-                //have the numbers be taken out and searched for
-
-            //probably have the system search for proper number combinations as new numbers are entered into the system
-            //maybe have scriptable objects for the effects so that they could theoretically be interchangeble
+            myNumberCaster.NumberEnter(newNumber);
         }
 
         public void PauseMove()
