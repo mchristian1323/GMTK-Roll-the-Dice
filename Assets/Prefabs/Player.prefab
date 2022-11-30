@@ -836,11 +836,11 @@ MonoBehaviour:
   playerJumpForce: 25
   jumpBufferFramesTotal: 4
   cayoteFramesTotal: 4
-  idleMaxTime: 10
+  idleMaxTime: 5
   isMoving: 0
   myMenuManager: {fileID: 0}
   bernieGun: {fileID: 3988688598778713876}
-  chargeRate: 1
+  chargeRate: 2
   chargeMax: 5
 --- !u!114 &7298171895301187210
 MonoBehaviour:
@@ -870,6 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAmmoUI: {fileID: 0}
+  myNumberSpellUI: {fileID: 0}
 --- !u!114 &7298171895301187211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,6 +901,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0adf81e54615bc4986a57ff95fd7a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeEffects:
+  - {fileID: 11400000, guid: fec799a5e6e06314592b3073ced18cfb, type: 2}
+  - {fileID: 11400000, guid: 1c27ab623f85b1e4d858e5fd2777d1a2, type: 2}
+  - {fileID: 11400000, guid: 272697561a95af74093c9efce8eb1a99, type: 2}
+  - {fileID: 11400000, guid: 128a28f9cb11618498b1fdd85a48ce1d, type: 2}
+  - {fileID: 11400000, guid: 4e9c57a8e764a6648966eb52f30cb759, type: 2}
+  - {fileID: 11400000, guid: 74088eb1f1d28e644b13759a427d46b5, type: 2}
+  - {fileID: 11400000, guid: d205ec33e5db99443a6a5c870cb1a7c6, type: 2}
+  - {fileID: 11400000, guid: 3aaa4bd977e403e4fa6f47c155c8e22f, type: 2}
+  - {fileID: 11400000, guid: cd209f460f1a4c745840c89d99cc10f3, type: 2}
 --- !u!114 &3600222516463294367
 MonoBehaviour:
   m_ObjectHideFlags: 0
