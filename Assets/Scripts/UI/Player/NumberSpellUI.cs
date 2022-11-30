@@ -7,6 +7,7 @@ using TMPro;
 using DiceMechanics.DiceEffects;
 using System.Linq;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.UI;
 
 namespace UI.Player
 {
@@ -25,6 +26,7 @@ namespace UI.Player
         //for selector
         [SerializeField] GameObject selector;
         Transform selectorContainer;
+        GameObject currentSelector;
 
         //private
         NumberCaster myNumberCaster;
@@ -32,14 +34,16 @@ namespace UI.Player
         DiceEffects[] retrievedDiceEffectList;
 
         bool startup = false;
-        int activeSpellCount = 0;
 
-        // Start is called before the first frame update
+        int activeSpellCount = 0;
+        int selectableRegion;
+        int currentSelection = 0;
+
         private void Awake()
         {
             numberSlotContainer = transform.Find("Number Slot Container");
             spellSlotContainer = transform.Find("Spell Slot Container");
-            selectorContainer = transform.Find("SelectorContainer");
+            selectorContainer = transform.Find("Selector Container");
             spellSlotReadyContainer = transform.Find("Spell Slot Ready Container");
             //numberSlot = numberSlotContainer.Find("Number Slot");
         }
@@ -50,9 +54,16 @@ namespace UI.Player
 
             myNumberCaster.OnNumberInteraction += NumberUI_OnNumberInteraction;
             myNumberCaster.OnSpellInteraction += SpellUI_OnSpellInteraction;
+            myNumberCaster.UpSelection += SelectorUI_OnSelectorInteractionUp;
+            myNumberCaster.DownSelection += SelectorUI_OnSelectorInteractionDown;
 
             RefreshNumberSpellbook();
             RefreshSpellList();
+
+            currentSelector = Instantiate(selector, selectorContainer);
+            currentSelector.GetComponent<RectTransform>().anchoredPosition = spellSlotContainer.position;
+
+            RefreshSelector();
 
             startup = true;
         }
@@ -67,8 +78,15 @@ namespace UI.Player
             RefreshSpellList();
         }
 
-        private void SelectorUI_OnSelectorInteraction(object sender, System.EventArgs e)
+        private void SelectorUI_OnSelectorInteractionUp(object sender, System.EventArgs e)
         {
+            currentSelection++;
+            RefreshSelector();
+        }
+
+        private void SelectorUI_OnSelectorInteractionDown(object sender, System.EventArgs e)
+        {
+            currentSelection--;
             RefreshSelector();
         }
 
@@ -137,25 +155,18 @@ namespace UI.Player
                     //refreshing the spells- the information is in the 
 
                 }
+
+                selectableRegion = retrievedDiceEffectList.Length;
             }
             else
             {
-                //reorganize the list depending on the numbers based on active 
-
-                //upon update->
-                //check the spells and move them to the proper list.
-                //organize the spells in proper order
-                //move the unready list down below the ready list(one spell length down)
-
-                //a foreach that transfers all the read spells
-
+                //sets a temporary spot
                 GameObject[] tempHold = new GameObject[retrievedDiceEffectList.Length];
 
+                //collects and deletes
                 foreach (Transform child in spellSlotContainer)
                 {
                     tempHold[child.GetComponent<SpellSlotData>().GetOriginalPlacing()] = child.gameObject;
-
-                    Debug.Log(child.GetComponent<SpellSlotData>().GetOriginalPlacing());
 
                     Destroy(child.gameObject);
                 }
@@ -164,14 +175,14 @@ namespace UI.Player
                 {
                     tempHold[child.GetComponent<SpellSlotData>().GetOriginalPlacing()] = child.gameObject;
 
-                    Debug.Log(child.GetComponent<SpellSlotData>().GetOriginalPlacing());
-
                     Destroy(child.gameObject);
                 }
 
+                activeSpellCount = 0;
                 int unready = 0;
                 int ready = 0;
 
+                //resets text, number, and position while still keeping everything in order
                 for(int i = 0; i < tempHold.Length; i++)
                 {
                     if (retrievedDiceEffectList[i].GetNumberMatch())
@@ -186,6 +197,7 @@ namespace UI.Player
                         refreshedSpellSlot.GetComponent<SpellSlotData>().SetOriginalPlacing(i);
 
                         ready++;
+                        activeSpellCount++;
                     }
                     else
                     {
@@ -201,16 +213,51 @@ namespace UI.Player
                         unready++;
                     }
                 }
+
+                activeSpellCount--;
+                RefreshSelector();
             }
         }
 
         private void RefreshSelector()
         {
-            //have the selector be generated under the spell listing
-            //have it rather access the number or have an even count
-                //if spell is unavailable or unselectable then selector can't move
-                //if at the bottom wrap around
-                //if none are selectable don't appear, if there are some then appear
+            if(activeSpellCount == 0)
+            {
+                currentSelector.GetComponent<Image>().enabled = false;
+            }
+            else
+            {
+                currentSelector.GetComponent<Image>().enabled = true;
+            }
+
+            if(currentSelection > activeSpellCount)
+            {
+                currentSelection = 0;
+            }
+
+            if(currentSelection < 0 )
+            {
+                currentSelection = activeSpellCount;
+            }
+
+            currentSelector.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, currentSelection * -34f);
+        }
+
+        public int GetCurrentSelectionNumber()
+        {
+            return currentSelection;
+        }
+
+        public bool AreThereActiveSpells()
+        {
+            if(activeSpellCount >0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //need a selector ui

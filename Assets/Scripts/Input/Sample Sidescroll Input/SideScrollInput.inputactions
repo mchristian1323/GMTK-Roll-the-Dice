@@ -84,6 +84,30 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SpellSelectionUp",
+                    "type": "Button",
+                    "id": "94b90a97-96ea-4816-b2aa-557fada29bdc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SpellSelectionDown",
+                    "type": "Button",
+                    "id": "193245a0-7835-4124-ba5b-fbd95a906f16",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SpellActivate",
+                    "type": "Button",
+                    "id": "54cd649a-dbf5-405c-8404-a6bf3edd342c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -227,6 +251,39 @@
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "Tongue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92b61e17-1e46-4595-ba66-ece2ea06887d",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "SpellSelectionUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e8549aa-9955-4fe4-bfc8-5e6847117543",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "SpellSelectionDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a78488b5-31c5-4e05-8ceb-ca49edb8945a",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "SpellActivate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

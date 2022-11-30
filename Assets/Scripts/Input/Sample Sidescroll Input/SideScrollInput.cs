@@ -97,6 +97,30 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpellSelectionUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""94b90a97-96ea-4816-b2aa-557fada29bdc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpellSelectionDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""193245a0-7835-4124-ba5b-fbd95a906f16"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpellActivate"",
+                    ""type"": ""Button"",
+                    ""id"": ""54cd649a-dbf5-405c-8404-a6bf3edd342c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -242,6 +266,39 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""action"": ""Tongue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92b61e17-1e46-4595-ba66-ece2ea06887d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""SpellSelectionUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e8549aa-9955-4fe4-bfc8-5e6847117543"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""SpellSelectionDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a78488b5-31c5-4e05-8ceb-ca49edb8945a"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""SpellActivate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -288,6 +345,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         m_NormalSideScroll_AimUp = m_NormalSideScroll.FindAction("AimUp", throwIfNotFound: true);
         m_NormalSideScroll_AimDown = m_NormalSideScroll.FindAction("AimDown", throwIfNotFound: true);
         m_NormalSideScroll_Tongue = m_NormalSideScroll.FindAction("Tongue", throwIfNotFound: true);
+        m_NormalSideScroll_SpellSelectionUp = m_NormalSideScroll.FindAction("SpellSelectionUp", throwIfNotFound: true);
+        m_NormalSideScroll_SpellSelectionDown = m_NormalSideScroll.FindAction("SpellSelectionDown", throwIfNotFound: true);
+        m_NormalSideScroll_SpellActivate = m_NormalSideScroll.FindAction("SpellActivate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -347,6 +407,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
     private readonly InputAction m_NormalSideScroll_AimUp;
     private readonly InputAction m_NormalSideScroll_AimDown;
     private readonly InputAction m_NormalSideScroll_Tongue;
+    private readonly InputAction m_NormalSideScroll_SpellSelectionUp;
+    private readonly InputAction m_NormalSideScroll_SpellSelectionDown;
+    private readonly InputAction m_NormalSideScroll_SpellActivate;
     public struct NormalSideScrollActions
     {
         private @SideScrollInput m_Wrapper;
@@ -361,6 +424,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         public InputAction @AimUp => m_Wrapper.m_NormalSideScroll_AimUp;
         public InputAction @AimDown => m_Wrapper.m_NormalSideScroll_AimDown;
         public InputAction @Tongue => m_Wrapper.m_NormalSideScroll_Tongue;
+        public InputAction @SpellSelectionUp => m_Wrapper.m_NormalSideScroll_SpellSelectionUp;
+        public InputAction @SpellSelectionDown => m_Wrapper.m_NormalSideScroll_SpellSelectionDown;
+        public InputAction @SpellActivate => m_Wrapper.m_NormalSideScroll_SpellActivate;
         public InputActionMap Get() { return m_Wrapper.m_NormalSideScroll; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,6 +466,15 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @Tongue.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
                 @Tongue.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
                 @Tongue.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
+                @SpellSelectionUp.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionUp;
+                @SpellSelectionUp.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionUp;
+                @SpellSelectionUp.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionUp;
+                @SpellSelectionDown.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionDown;
+                @SpellSelectionDown.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionDown;
+                @SpellSelectionDown.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionDown;
+                @SpellActivate.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellActivate;
+                @SpellActivate.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellActivate;
+                @SpellActivate.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellActivate;
             }
             m_Wrapper.m_NormalSideScrollActionsCallbackInterface = instance;
             if (instance != null)
@@ -434,6 +509,15 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @Tongue.started += instance.OnTongue;
                 @Tongue.performed += instance.OnTongue;
                 @Tongue.canceled += instance.OnTongue;
+                @SpellSelectionUp.started += instance.OnSpellSelectionUp;
+                @SpellSelectionUp.performed += instance.OnSpellSelectionUp;
+                @SpellSelectionUp.canceled += instance.OnSpellSelectionUp;
+                @SpellSelectionDown.started += instance.OnSpellSelectionDown;
+                @SpellSelectionDown.performed += instance.OnSpellSelectionDown;
+                @SpellSelectionDown.canceled += instance.OnSpellSelectionDown;
+                @SpellActivate.started += instance.OnSpellActivate;
+                @SpellActivate.performed += instance.OnSpellActivate;
+                @SpellActivate.canceled += instance.OnSpellActivate;
             }
         }
     }
@@ -468,5 +552,8 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         void OnAimUp(InputAction.CallbackContext context);
         void OnAimDown(InputAction.CallbackContext context);
         void OnTongue(InputAction.CallbackContext context);
+        void OnSpellSelectionUp(InputAction.CallbackContext context);
+        void OnSpellSelectionDown(InputAction.CallbackContext context);
+        void OnSpellActivate(InputAction.CallbackContext context);
     }
 }

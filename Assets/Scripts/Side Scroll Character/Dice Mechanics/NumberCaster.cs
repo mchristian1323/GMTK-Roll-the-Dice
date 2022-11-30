@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,6 +15,8 @@ namespace DiceMechanics
 
         public event EventHandler OnNumberInteraction;
         public event EventHandler OnSpellInteraction;
+        public event EventHandler UpSelection;
+        public event EventHandler DownSelection;
 
         int numberCounter;
 
@@ -53,7 +56,30 @@ namespace DiceMechanics
             //need a way to activate the spell without clicking -> have controls and slot change depending on number and/or bool
             //once spell is used put back in the original part of the list under ready spells -> have a set number and a current number
                 //order it in the list depending on that number
-        
+
+        public void MoveSelectionUp()
+        {
+            UpSelection?.Invoke(this, EventArgs.Empty);
+        }
+        public void MoveSelectionDown()
+        {
+            DownSelection?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void ActivateCurrentSpell()
+        {
+            NumberSpellUI tempNumberSpellUI = FindObjectOfType<NumberSpellUI>();
+
+            if(tempNumberSpellUI.AreThereActiveSpells())
+            {
+                Debug.Log("Activating spell in slot " + tempNumberSpellUI.GetCurrentSelectionNumber());
+            }
+            //check to see if there are active spells
+
+            //get current number
+            //activate spell
+        }
+
         public void FumbleEnter()
         {
             //when all 3 bad effect slots are full, a bad effect happens

@@ -64,6 +64,7 @@ namespace SideScrollControl
         BoxCollider2D myBoxCollider;
         PlayerStateManager myPlayerStateManager;
         DiceHolder myDiceHolder;
+        NumberCaster myNumberCaster;
 
         // Start is called before the first frame update
         void Awake()
@@ -74,6 +75,7 @@ namespace SideScrollControl
             myBoxCollider = GetComponent<BoxCollider2D>();
             myPlayerStateManager = GetComponent<PlayerStateManager>();
             myDiceHolder = GetComponent<DiceHolder>();
+            myNumberCaster = GetComponent<NumberCaster>();
 
             //controller actions
             myPlayerInput.actions["jump"].started += OnJump;
@@ -85,6 +87,9 @@ namespace SideScrollControl
             myPlayerInput.actions["DiceThrow"].started += OnDiceThrow;
             myPlayerInput.actions["DiceThrow"].canceled += OnDiceThrow;
             myPlayerInput.actions["Pause"].started += OnPause;
+            myPlayerInput.actions["SpellSelectionUp"].started += OnSpellSelectionUp;
+            myPlayerInput.actions["SpellSelectionDown"].started += OnSpellSelectionDown;
+            myPlayerInput.actions["SpellActivate"].started += OnSpellActivate;
         }
 
         void Start()
@@ -210,6 +215,21 @@ namespace SideScrollControl
         private void OnPause(InputAction.CallbackContext context)
         {
             myMenuManager.PauseGame(); //set this within script
+        }
+
+        public void OnSpellSelectionUp(InputAction.CallbackContext context)
+        {
+            myNumberCaster.MoveSelectionDown();
+        }
+
+        public void OnSpellSelectionDown(InputAction.CallbackContext context)
+        {
+            myNumberCaster.MoveSelectionUp();
+        }
+
+        public void OnSpellActivate(InputAction.CallbackContext context)
+        {
+            myNumberCaster.ActivateCurrentSpell();
         }
 
         //physical functions
