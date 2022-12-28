@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb5b6cc59f494947b76779ec6e4cc32, type: 3}
   m_Name: discard 2
   m_EditorClassIdentifier: 
-  spellName: single num 2
+  spellName: Increase Damage
   enteredNumbers: 040000000500000006000000
   areAllNumbersNeeded: 0
+  effect: {fileID: 8879292352654768683, guid: 0d37134b4a17556478e8deec73192030, type: 3}

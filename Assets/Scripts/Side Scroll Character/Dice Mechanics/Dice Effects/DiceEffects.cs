@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace DiceMechanics.DiceEffects
 {
@@ -12,11 +13,14 @@ namespace DiceMechanics.DiceEffects
         [SerializeField] string spellName;
         [SerializeField] int[] enteredNumbers;
         [SerializeField] bool areAllNumbersNeeded;
+        [SerializeField] GameObject effect;
         //spell description
 
         Dictionary<int, bool> number;
         int numberSuccessCount;
         bool numberMatch;
+
+        int listPosition;
 
         public void SetUpSpell()
         {
@@ -30,7 +34,7 @@ namespace DiceMechanics.DiceEffects
 
         public void TestTheNumbers(int acheivedNumber)
         {
-            if(!numberMatch) //skips if good to go
+            if(!numberMatch || !areAllNumbersNeeded) //skips if good to go
             {
                 foreach(int key in number.Keys.ToList()) //checks the numbers
                 {
@@ -64,19 +68,84 @@ namespace DiceMechanics.DiceEffects
             }
         }
 
-        //can be done in script to check if the numbers again ->need to grab the number list
-        private void ResetSpell()
+        public void TestTheReset(int usedNumber)
         {
-            foreach(int key in number.Keys)
-            {
-                number[key] = false;
-                numberMatch = false;
+            //run throug the dict and turn off the numbers bool
+            //if all numbers are needed then numbermatch is false
 
-                //check if spell has more of the same number before reseting
+            foreach(int key in number.Keys.ToList())
+            {
+                if(key == usedNumber)
+                {
+                    number[key] = false;
+                    if(areAllNumbersNeeded)
+                    {
+                        if(numberMatch)
+                        {
+                            numberMatch= false;
+                        }
+                    }
+                }
+            }
+
+            if(!areAllNumbersNeeded)
+            {
+                int count = 0;
+                foreach(int key in number.Keys.ToList())
+                {
+                    if (number[key] == true)
+                    {
+                        count++;
+                    }
+                }
+                if(count == 0)
+                {
+                    numberMatch = false;
+                }
+            }
+        }
+        
+        public void CheckCurrentStatus(List<int> listToCompare)
+        {
+            if(listToCompare.Count == 0)
+            {
+                numberMatch = false;
+                foreach(int key in number.Keys.ToList())
+                {
+                    number[key] = false;
+                }
+
+                return;
+            }
+            if(numberMatch)
+            {
+                int failCount = 0;
+                foreach(int key in number.Keys.ToList())
+                {
+                    int duplicates = 0;
+                    for(int i = 0; i < listToCompare.Count; i++)
+                    {
+                        if (key == listToCompare[i])
+                        {
+                            duplicates++;
+                        }
+                    }
+
+                    if(duplicates == 0)
+                    {
+                        number[key] = false;
+                        failCount++;
+
+                        if(areAllNumbersNeeded || failCount == number.Count)
+                        {
+                            numberMatch = false;
+                        }
+                    }
+                }
             }
         }
 
-        //getters
+        //getters and setters
         public int GetNumberArraySize()
         {
             return number.Count;
@@ -95,6 +164,26 @@ namespace DiceMechanics.DiceEffects
         public int[] GetOriginalArray()
         {
             return enteredNumbers;
+        }
+
+        public bool AreAllNumbersNeeded()
+        {
+            return areAllNumbersNeeded;
+        }
+
+        public void SetListPosition(int newPosition)
+        {
+            listPosition = newPosition;
+        }
+
+        public int GetListPosition()
+        {
+            return listPosition;
+        }
+
+        public GameObject GetEffect()
+        {
+            return effect;
         }
 
         //do we need a system for doubles or 3 of a kind

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UI.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,6 +20,8 @@ namespace DiceMechanics
         public event EventHandler DownSelection;
 
         int numberCounter;
+
+        int storedPosition;
 
         private void Start()
         {
@@ -70,14 +73,117 @@ namespace DiceMechanics
         {
             NumberSpellUI tempNumberSpellUI = FindObjectOfType<NumberSpellUI>();
 
+
             if(tempNumberSpellUI.AreThereActiveSpells())
             {
-                Debug.Log("Activating spell in slot " + tempNumberSpellUI.GetCurrentSelectionNumber());
+                //get the selection number
+                int[] numbersToDelete = activeEffects[tempNumberSpellUI.GetCurrentSelectionNumber()].GetOriginalArray();
+
+                if (activeEffects[tempNumberSpellUI.GetCurrentSelectionNumber()].AreAllNumbersNeeded())
+                {
+                    //if all numbers are to be deleted
+                    //scan the bank for all the numbers and delete them
+                    //int storedPosition; //don't know why it wants it here
+
+                    foreach (int number in numbersToDelete)
+                    {
+                        int duplicates = 0;
+                        bool success = false;
+
+                        //if havent deleted delete
+                        //if have then start counting
+
+                        for (int i = 0; i < numberSpellBook.Count; i++)
+                        {
+                            if(number == numberSpellBook[i])
+                            {
+                                if(!success)
+                                {
+                                    storedPosition = i;
+                                }
+                                else
+                                {
+                                    duplicates++;
+                                }
+                            }
+                        }
+                        numberSpellBook.RemoveAt(storedPosition);
+                        numberCounter--;
+
+                        if (duplicates == 0)
+                        {
+                            activeEffects[tempNumberSpellUI.GetCurrentSelectionNumber()].TestTheReset(number);
+                        }
+                    }
+                }
+                else
+                {
+                    //if only one number is needed
+                    //scan the numbers and delete whats there. if the number is a singleton unready the number in the dictionary
+                    bool success = false;
+                    int duplicates = 0;
+                    int cachedDeletedNumber = 0;
+                    foreach(int number in numbersToDelete)
+                    {
+                        //focus on counting, delete the first number you meet. if count is bigger send the deleted number
+                        for(int i = 0; i < numberSpellBook.Count; i++)
+                        {
+                            if(number == numberSpellBook[i])
+                            {
+                                if(!success)
+                                {
+                                    storedPosition = i;
+                                    success = true;
+                                    cachedDeletedNumber = numberSpellBook[i];
+                                }
+                                else
+                                {
+                                    duplicates++;
+                                }
+                            }
+                            //need to find a way to cancel the other numbers if they are not there.
+                            if(duplicates == 0)
+                            {
+                                activeEffects[tempNumberSpellUI.GetCurrentSelectionNumber()].TestTheReset(cachedDeletedNumber);
+                            }
+                        }
+                    }
+
+                    numberSpellBook.RemoveAt(storedPosition);
+                    numberCounter--;
+                }
+
+                foreach(DiceEffects.DiceEffects effect in activeEffects)
+                {
+                    if(effect.GetNumberMatch())
+                    {
+                        effect.CheckCurrentStatus(numberSpellBook);
+                    }
+                }
+
+                //test every other active effect
+                    //send the used numbers and activate,
+
+                //maybe check if there are no numbers and run through the dict
+
+                //instantiates and activates then apply ui. doesnt do all of the effects yet
+                GameObject newEffect = activeEffects[tempNumberSpellUI.GetCurrentSelectionNumber()].GetEffect();
+
+                Instantiate(newEffect, gameObject.transform);
+                OnNumberInteraction?.Invoke(this, EventArgs.Empty);
+                OnSpellInteraction?.Invoke(this, EventArgs.Empty);
             }
             //check to see if there are active spells
 
-            //get current number
+            //get current number and if can cast
+
             //activate spell
+
+            foreach (DiceEffects.DiceEffects effect in activeEffects)
+            {
+                //Debug.Log(effect.GetSpellName() + " " + effect.GetNumberMatch());
+                //Debug.Log(effect.GetSpellName() + " " + effect.GetNumberMatch().ToString());
+            }
         }
 
         public void FumbleEnter()
@@ -91,6 +197,11 @@ namespace DiceMechanics
         }
 
         //getters and setters
+        public void SetSpellNumberListPosition(int spell, int position)
+        {
+            activeEffects[spell].SetListPosition(position);
+        }
+
         public int GetNumberListCount()
         {
             return numberSpellBook.Count;

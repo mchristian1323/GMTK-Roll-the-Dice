@@ -15,3 +15,4 @@ MonoBehaviour:
   spellName: Mult test
   enteredNumbers: 0400000005000000
   areAllNumbersNeeded: 1
+  effect: {fileID: 8879292352654768683, guid: f9c81a105a9563740907ab07abb27520, type: 3}

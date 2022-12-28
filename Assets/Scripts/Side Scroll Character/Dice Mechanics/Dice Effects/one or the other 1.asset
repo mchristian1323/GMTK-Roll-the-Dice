@@ -15,3 +15,4 @@ MonoBehaviour:
   spellName: one or the other
   enteredNumbers: 0100000002000000
   areAllNumbersNeeded: 0
+  effect: {fileID: 8879292352654768683, guid: f9c81a105a9563740907ab07abb27520, type: 3}

@@ -22,6 +22,7 @@ namespace UI.Player
         [SerializeField] GameObject spellSlot;
         Transform spellSlotContainer;
         Transform spellSlotReadyContainer;
+        SpellSlotData[] readySpells;
 
         //for selector
         [SerializeField] GameObject selector;
@@ -71,6 +72,7 @@ namespace UI.Player
         private void NumberUI_OnNumberInteraction(object sender, System.EventArgs e)
         {
             RefreshNumberSpellbook();
+            RefreshSelector();
         }
 
         private void SpellUI_OnSpellInteraction(object sender, System.EventArgs e)
@@ -89,6 +91,8 @@ namespace UI.Player
             currentSelection--;
             RefreshSelector();
         }
+
+        //possible neutral selector refresh
 
         private void RefreshNumberSpellbook()
         {
@@ -127,6 +131,7 @@ namespace UI.Player
             if(!startup)
             {
                 retrievedDiceEffectList = myNumberCaster.GetDiceEffectArray();
+                readySpells = new SpellSlotData[retrievedDiceEffectList.Length];
 
                 foreach (Transform child in spellSlotContainer)
                 {
@@ -148,11 +153,12 @@ namespace UI.Player
                     //set its number
                     newSpellSlot.GetComponent<SpellSlotData>().SetOriginalPlacing(i);
                     //set color
-                        //when setting up color, make it a backing color
+                    //when setting up color, make it a backing color
                     //set dullness
-                        //dim and possibly no backing color?
+                    //dim and possibly no backing color?
 
                     //refreshing the spells- the information is in the 
+                    myNumberCaster.SetSpellNumberListPosition(i, i);
 
                 }
 
@@ -187,20 +193,28 @@ namespace UI.Player
                 {
                     if (retrievedDiceEffectList[i].GetNumberMatch())
                     {
+                        //spawn
                         RectTransform refreshedSpellSlot = Instantiate(tempHold[i].gameObject, spellSlotReadyContainer).GetComponent<RectTransform>();
                         
+                        //position
                         refreshedSpellSlot.anchoredPosition = new Vector2(0, ready * -spellSlotSize);
 
+                        //gain spell from other list and set text
                         refreshedSpellSlot.Find("Spell Text").GetComponent<TextMeshProUGUI>().text = retrievedDiceEffectList[i].GetSpellName();
                         refreshedSpellSlot.Find("Spell Text").GetComponent<TextMeshProUGUI>().enabled = true;
 
+                        //set menu number
                         refreshedSpellSlot.GetComponent<SpellSlotData>().SetOriginalPlacing(i);
+
+                        //active spells for retrieval
+                        readySpells[activeSpellCount] = refreshedSpellSlot.GetComponent<SpellSlotData>(); //null?
 
                         ready++;
                         activeSpellCount++;
                     }
                     else
                     {
+                        //same but for unreadied spells
                         RectTransform refreshedSpellSlot = Instantiate(tempHold[i].gameObject, spellSlotContainer).GetComponent<RectTransform>();
                         
                         refreshedSpellSlot.anchoredPosition = new Vector2(0, unready * -spellSlotSize);
@@ -245,7 +259,7 @@ namespace UI.Player
 
         public int GetCurrentSelectionNumber()
         {
-            return currentSelection;
+            return readySpells[currentSelection].GetOriginalPlacing();
         }
 
         public bool AreThereActiveSpells()

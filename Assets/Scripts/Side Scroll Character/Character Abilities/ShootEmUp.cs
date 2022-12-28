@@ -19,7 +19,7 @@ namespace SideScrollControl.CharacterAbilities
 
         [Header("Bullet Physics")]
         [SerializeField] int baseAmmoCount = 6; //how much
-        [SerializeField] int baseDamage = 10; //how hard
+        [SerializeField] float baseDamage = 10; //how hard
         [SerializeField] float baseShotSpeed = 10f; //how fast
         //how far
         //how big
@@ -36,13 +36,15 @@ namespace SideScrollControl.CharacterAbilities
 
         //private
         int chamberAmmo;
-        int chamberDamage;
+        float chamberDamage;
         float chamberShotSpeed;
 
         bool canShoot;
         float reloadBuffer;
 
         float direction;
+
+        float additionalDamage;
 
         //events
         public event EventHandler OnBulletInteraction;
@@ -159,7 +161,7 @@ namespace SideScrollControl.CharacterAbilities
 
         public void SetDamage(int newDamage)
         {
-            baseDamage = newDamage;
+            chamberDamage += newDamage;
         }
 
         public void SetSpeed(float newSpeed)

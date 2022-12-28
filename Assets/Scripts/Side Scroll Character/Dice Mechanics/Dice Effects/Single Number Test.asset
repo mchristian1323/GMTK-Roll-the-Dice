@@ -15,3 +15,4 @@ MonoBehaviour:
   spellName: Single Test
   enteredNumbers: 010000000200000003000000
   areAllNumbersNeeded: 0
+  effect: {fileID: 8879292352654768683, guid: f9c81a105a9563740907ab07abb27520, type: 3}
