@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SideScrollControl.CharacterAbilities;
+﻿using SideScrollControl.CharacterAbilities;
 
 namespace DiceMechanics.DiceEffects
 {

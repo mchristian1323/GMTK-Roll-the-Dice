@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acb5b6cc59f494947b76779ec6e4cc32, type: 3}
-  m_Name: one or the other 3
+  m_Name: Frog Shield
   m_EditorClassIdentifier: 
-  spellName: one or the other 3
-  enteredNumbers: 0500000006000000
-  areAllNumbersNeeded: 0
+  spellName: Frog Sheild
+  enteredNumbers: 0200000004000000
+  areAllNumbersNeeded: 1
   effect: {fileID: 8879292352654768683, guid: f9c81a105a9563740907ab07abb27520, type: 3}

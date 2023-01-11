@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace DiceMechanics.DiceEffects
@@ -10,12 +9,12 @@ namespace DiceMechanics.DiceEffects
         // Start is called before the first frame update
         void Start()
         {
-            thisUniqueEffect.NewEffect();
             StartCoroutine(Timer());
         }
 
         IEnumerator Timer()
         {
+            thisUniqueEffect.NewEffect();
             yield return new WaitForSeconds(.5f);
             Destroy(gameObject);
         }

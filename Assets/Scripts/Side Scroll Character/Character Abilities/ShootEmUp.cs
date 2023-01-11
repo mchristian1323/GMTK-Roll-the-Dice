@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SideScrollControl.CharacterAbilities.Gun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,10 +13,7 @@ namespace SideScrollControl.CharacterAbilities
     {
         //Serialized
         [Header("Bullet Prefabs")]
-        [SerializeField] GameObject Bullet;
-
-        [Header("Gun Anim")]
-        [SerializeField] SpriteRenderer gunSpriteRenderer;
+        [SerializeField] GameObject bullet;
 
         [Header("Bullet Physics")]
         [SerializeField] int baseAmmoCount = 6; //how much
@@ -33,9 +31,13 @@ namespace SideScrollControl.CharacterAbilities
 
         //Initialized
         PlayerInput myPlayerInput;
+        DaGun[] guns;
+        Animator myAnimator;
 
         //private
         int chamberAmmo;
+        int gunCount = 1;
+        int shotStanceCounter = 1;
         float chamberDamage;
         float chamberShotSpeed;
 
@@ -43,8 +45,6 @@ namespace SideScrollControl.CharacterAbilities
         float reloadBuffer;
 
         float direction;
-
-        float additionalDamage;
 
         //events
         public event EventHandler OnBulletInteraction;
@@ -55,6 +55,7 @@ namespace SideScrollControl.CharacterAbilities
         void Awake()
         {
             myPlayerInput = GetComponent<PlayerInput>();
+            myAnimator = GetComponent<Animator>();
 
             //controller actions
             myPlayerInput.actions["Shoot"].started += OnShoot;
@@ -67,6 +68,7 @@ namespace SideScrollControl.CharacterAbilities
             chamberShotSpeed = baseShotSpeed;
             canShoot = true;
             reloadBuffer = baseReloadTime;
+            guns = transform.GetComponentsInChildren<DaGun>();
         }
 
         // Update is called once per frame
@@ -88,14 +90,10 @@ namespace SideScrollControl.CharacterAbilities
             {
                 if (chamberAmmo > 0)
                 {
-                    //activate animation -> consider shot stance cycle
-                    gunSpriteRenderer.enabled = true; //this will change
-                    //fire gun and play anim
-                    GameObject shot = Instantiate(Bullet, businessEnd.position, Quaternion.identity);
-                    shot.GetComponent<Projectile.Projectile>().SetPhysics(chamberShotSpeed, direction);
-                    GameObject flash = Instantiate(muzzleFlash, businessEnd.position, Quaternion.identity);
-                    //play sound
-
+                    for(int i = 0; i < gunCount; i++)
+                    {
+                        guns[i].Fire(bullet, chamberShotSpeed, direction, chamberDamage, muzzleFlash);
+                    }
                     //reduce ammo
                     chamberAmmo--;
 
@@ -104,11 +102,25 @@ namespace SideScrollControl.CharacterAbilities
 
                     //update animation
                     OnBulletInteraction?.Invoke(this, EventArgs.Empty);
+
+                    myAnimator.SetInteger("GunStance", shotStanceCounter);
+                    myAnimator.SetTrigger("ShootGun");
+                    shotStanceCounter++;
+                    if (shotStanceCounter > 4)
+                        shotStanceCounter = 1;
                 }
             }
             //consider the ability to change shooting styles
             //possibly have if/switch statements that go through different options under can shoot
             //beyond change of ammo count and bullet physics
+
+            //idea 2
+                //make the shooting its own script and have an array of guns to work with.
+                //make the ammo type something made and changed from here
+                //have each one of them have a spread shot option
+
+            //might need to make the reload like time crisis
+                //have the "Damage level" Be something that evolves more with everything. more ammo, bigger shot, more damage, ect.
         }
 
         public void PauseMove()
@@ -123,12 +135,37 @@ namespace SideScrollControl.CharacterAbilities
             canShoot = true;
         }
 
+        public void ChangeAmmo(GameObject newAmmo)
+        {
+            //apply new ammo and then start a timer to revert back to original
+        }
+
+        public void MultiShot()
+        {
+            //add in more projectiles to the gun blast
+        }
+
+        public void CastSpell(GameObject projectile, int amount)
+        {
+            //need to freeze bernadetta when she casts
+
+            for(int i = 0; i < amount; i++)
+            {
+                Instantiate(projectile, businessEnd.position, Quaternion.identity); //need to change business end
+            }
+        }
+
+        public void CancelGunEffects()
+        {
+            //turn off the gun effects on reset
+        }
+
         //private
         private void TimedReload()
         {
             if(reloadBuffer < baseReloadTime - .5f)
             {
-                gunSpriteRenderer.enabled = false; //this will changes
+                //gunSpriteRenderer.enabled = false; //this will changes
             }
 
             //reloadbuffer += time.DeltaTime;
@@ -167,6 +204,20 @@ namespace SideScrollControl.CharacterAbilities
         public void SetSpeed(float newSpeed)
         {
             baseShotSpeed = newSpeed;
+        }
+
+        //activators
+        public void ActivateMultiShot()
+        {
+            gunCount = 3;
+            StartCoroutine(MultishotCountdown());
+        }
+
+        IEnumerator MultishotCountdown()
+        {
+            yield return new WaitForSeconds(10f);
+            gunCount = 1;
+
         }
     }
 }

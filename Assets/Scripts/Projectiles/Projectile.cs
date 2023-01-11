@@ -1,16 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Projectile
 {
     public class Projectile : MonoBehaviour
     {
+        float damage;
+        bool playerSide;
 
-        public void SetPhysics(float speed, float direction)
+        public void SetPhysics(float speed, float direction, float damage, bool playerSide)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(speed * direction, 0);
             transform.localScale = new Vector2(Mathf.Sign(direction), 1f);
+            this.damage = damage;
+            this.playerSide = playerSide;
             //physics needs: up and down
             //damage
         }
@@ -19,6 +22,20 @@ namespace Projectile
         {
             GetComponent<SpriteRenderer>().enabled = false;
             FindObjectOfType<Audio.AudioManager>().Play("Magic Impact");
+            if(playerSide)
+            {
+                if(collision.gameObject.tag == "Enemy")
+                {
+                    //do damage
+                }
+            }
+            else
+            {
+                if(collision.gameObject.tag == "Player")
+                {
+                    //do damage
+                }
+            }
             StartCoroutine(Destruction());
         }
 

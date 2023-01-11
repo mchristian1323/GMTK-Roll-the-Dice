@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DiceMechanics;
 using SideScrollControl.CharacterAbilities;
@@ -20,6 +19,7 @@ namespace SideScrollControl
         DiceHolder myDiceHolder;
         PlayerSideScrollControls mySideScrollControls;
         Animator myAnimator;
+        ShootEmUp myShootEmUp;
 
         bool landed;
 
@@ -31,6 +31,7 @@ namespace SideScrollControl
             myDiceHolder = GetComponent<DiceHolder>();
             mySideScrollControls = GetComponent<PlayerSideScrollControls>();
             myAnimator = GetComponent<Animator>();
+            myShootEmUp= GetComponent<ShootEmUp>();
         }
 
         // Update is called once per frame
@@ -39,11 +40,32 @@ namespace SideScrollControl
             DamageCheck();
         }
 
+        //public
+        public void Heal(float healthValue)
+        {
+            health += healthValue;
+        }
+
+        public void SoftReset()
+        {
+            //turn off damage pump and timed abilities
+            myShootEmUp.CancelGunEffects();
+        }
+
+        public void HardReset()
+        {
+            //cancel all abilities
+            myShootEmUp.CancelGunEffects();
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if(collision.collider.tag == "Enemy")
             {
-                health -= collision.gameObject.GetComponent<Enemy.EnemyStatus>().GetEnemyDamage();
+                health -= collision.gameObject.GetComponent<Enemy.EnemyStatus>().GetEnemyDamage(); 
+
+                //test the "hazard" Script here instead of the DamageCheck() script. then keep the other stuff there
+
             }
         }
 
@@ -75,12 +97,23 @@ namespace SideScrollControl
                 StartCoroutine(DamageOff());
                 landed = false;
             }
+
+            if(health <= 0)
+            {
+                Death();
+            }
         }
 
         IEnumerator DamageOff()
         {
             yield return new WaitForSeconds(.5f);
             myAnimator.SetBool("Damage", false);
+        }
+
+        //health depleted
+        private void Death()
+        {
+            //activate death sequence
         }
     }
 }

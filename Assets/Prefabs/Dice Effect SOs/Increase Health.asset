@@ -7,12 +7,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acb5b6cc59f494947b76779ec6e4cc32, type: 3}
-  m_Name: Multi num 2
+  m_Name: Increase Health
   m_EditorClassIdentifier: 
-  spellName: Multi num 1
-  enteredNumbers: 0100000002000000
-  areAllNumbersNeeded: 1
-  effect: {fileID: 8879292352654768683, guid: f9c81a105a9563740907ab07abb27520, type: 3}
+  spellName: Increase Health 1/2/3
+  enteredNumbers: 010000000200000003000000
+  areAllNumbersNeeded: 0
+  effect: {fileID: 8879292352654768683, guid: 3154eeda041f62a45b9190b3eafd8125, type: 3}
