@@ -13,8 +13,12 @@ namespace SideScrollControl
         //this script sets up the ui without clogging up other scripts on the player character
         private void Start()
         {
-            myAmmoUI.SetShootEmUp(GetComponent<ShootEmUp>());
-            myNumberSpellUI.SetUpNumberSpellBook(GetComponent<NumberCaster>());
+            //myAmmoUI.SetShootEmUp(GetComponent<ShootEmUp>());
+            //myNumberSpellUI.SetUpNumberSpellBook(GetComponent<NumberCaster>());
+
+            //health bar
+            //collectables
+            //item
         }
     }
 }

@@ -72,5 +72,12 @@ namespace DiceMechanics
                 diceChargeAnim.SetActive(false);
             }
         }
+
+        public void DiceGunSwitching()
+        {
+            //when gun is shootng move dice to proper locations
+            //diceAnimator.SetTrigger("GunStance");
+            //make hand disapear
+        }
     }
 }

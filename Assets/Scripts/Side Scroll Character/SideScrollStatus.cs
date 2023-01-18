@@ -16,7 +16,7 @@ namespace SideScrollControl
         //Initializers
         BoxCollider2D myBoxCollider;
         Rigidbody2D myRigidbody;
-        DiceHolder myDiceHolder;
+        //DiceHolder myDiceHolder;
         PlayerSideScrollControls mySideScrollControls;
         Animator myAnimator;
         ShootEmUp myShootEmUp;
@@ -28,7 +28,7 @@ namespace SideScrollControl
         {
             myBoxCollider = GetComponent<BoxCollider2D>();
             myRigidbody = GetComponent<Rigidbody2D>();
-            myDiceHolder = GetComponent<DiceHolder>();
+            //myDiceHolder = GetComponent<DiceHolder>();
             mySideScrollControls = GetComponent<PlayerSideScrollControls>();
             myAnimator = GetComponent<Animator>();
             myShootEmUp= GetComponent<ShootEmUp>();
@@ -58,6 +58,11 @@ namespace SideScrollControl
             myShootEmUp.CancelGunEffects();
         }
 
+        public void TakeDamage(float damage)
+        {
+            health -= damage;
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if(collision.collider.tag == "Enemy")
@@ -78,7 +83,7 @@ namespace SideScrollControl
                 //animation
                 myAnimator.SetBool("Damage", true);
                 //mechanical
-                myDiceHolder.DropDice();
+                //myDiceHolder.DropDice();
                     //possibly move this to a seperate script that has authority over the other scripts
                 mySideScrollControls.PauseMove();
                 GetComponent<ShootEmUp>().PauseMove();

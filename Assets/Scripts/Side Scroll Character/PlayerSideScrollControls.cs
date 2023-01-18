@@ -46,6 +46,9 @@ namespace SideScrollControl
         bool idleActive;
         int randomIdle = 0;
 
+        bool isAimingUp;
+        bool isAimingDown;
+
         //game specific
         [Header("UI")]
         [SerializeField] UI.MenuManager myMenuManager;
@@ -63,8 +66,8 @@ namespace SideScrollControl
         PlayerInput myPlayerInput;
         BoxCollider2D myBoxCollider;
         PlayerStateManager myPlayerStateManager;
-        DiceHolder myDiceHolder;
-        NumberCaster myNumberCaster;
+        //DiceHolder myDiceHolder;
+        //NumberCaster myNumberCaster;
 
         // Start is called before the first frame update
         void Awake()
@@ -74,8 +77,8 @@ namespace SideScrollControl
             myAnimator = GetComponent<Animator>();
             myBoxCollider = GetComponent<BoxCollider2D>();
             myPlayerStateManager = GetComponent<PlayerStateManager>();
-            myDiceHolder = GetComponent<DiceHolder>();
-            myNumberCaster = GetComponent<NumberCaster>();
+            //myDiceHolder = GetComponent<DiceHolder>();
+            //myNumberCaster = GetComponent<NumberCaster>();
 
             //controller actions
             myPlayerInput.actions["jump"].started += OnJump;
@@ -87,8 +90,10 @@ namespace SideScrollControl
             myPlayerInput.actions["DiceThrow"].started += OnDiceThrow;
             myPlayerInput.actions["DiceThrow"].canceled += OnDiceThrow;
             myPlayerInput.actions["Pause"].started += OnPause;
-            myPlayerInput.actions["SpellSelectionUp"].started += OnSpellSelectionUp;
-            myPlayerInput.actions["SpellSelectionDown"].started += OnSpellSelectionDown;
+            myPlayerInput.actions["AimUp"].started += OnAimUp;
+            myPlayerInput.actions["AimUp"].canceled += OnAimUp;
+            myPlayerInput.actions["AimDown"].started += OnAimDown;
+            myPlayerInput.actions["AimDown"].canceled += OnAimDown;
             myPlayerInput.actions["SpellActivate"].started += OnSpellActivate;
         }
 
@@ -190,6 +195,8 @@ namespace SideScrollControl
                 //new controller functionss
         private void OnDiceThrow(InputAction.CallbackContext context)
         {
+
+            /*
             if(myDiceHolder.isHoldingDice)
             {
                 if (context.phase == InputActionPhase.Started)
@@ -210,6 +217,7 @@ namespace SideScrollControl
                     myPlayerStateManager.ResumeMovement();
                 }
             }
+            */
         }
 
         private void OnPause(InputAction.CallbackContext context)
@@ -217,19 +225,36 @@ namespace SideScrollControl
             myMenuManager.PauseGame(); //set this within script
         }
 
-        public void OnSpellSelectionUp(InputAction.CallbackContext context)
+        public void OnAimUp(InputAction.CallbackContext context)
         {
-            myNumberCaster.MoveSelectionDown();
+            if(!isAimingDown)
+            {
+                if (context.phase == InputActionPhase.Started)
+                {
+                    isAimingUp = true;
+                }
+                if (context.phase == InputActionPhase.Canceled)
+                {
+                    isAimingUp = false;
+                }
+            }
         }
 
-        public void OnSpellSelectionDown(InputAction.CallbackContext context)
+        public void OnAimDown(InputAction.CallbackContext context)
         {
-            myNumberCaster.MoveSelectionUp();
+            if(context.phase == InputActionPhase.Started)
+            {
+                isAimingDown = true;
+            }
+            if(context.phase == InputActionPhase.Canceled)
+            {
+                isAimingDown = false;
+            }
         }
 
         public void OnSpellActivate(InputAction.CallbackContext context)
         {
-            myNumberCaster.ActivateCurrentSpell();
+            //myNumberCaster.ActivateCurrentSpell();
         }
 
         //physical functions
@@ -432,6 +457,16 @@ namespace SideScrollControl
         public bool GetIdleStatusAnim()
         {
             return idleActive;
+        }
+
+        public bool GetAimingUpData()
+        {
+            return isAimingUp;
+        }
+
+        public bool GetAimingDownData()
+        {
+            return isAimingDown;
         }
     }
 }

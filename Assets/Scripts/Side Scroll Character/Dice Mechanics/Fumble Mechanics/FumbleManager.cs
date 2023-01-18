@@ -59,6 +59,9 @@ namespace DiceMechanics.FumbleMechanics
 
             fumbles = 0;
             //update ui
+
+            //activate fumble
+                //pause game, play animation (maybe binding of isaac style) then resume with effect
         }
     }
 }

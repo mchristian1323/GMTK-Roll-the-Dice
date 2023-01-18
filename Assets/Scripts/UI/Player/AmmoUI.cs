@@ -70,7 +70,7 @@ namespace UI.Player
             {
                 foreach(Transform child in bulletContainer)
                 {
-                    if(myShootEmUp.GetChamberAmmo() >= child.gameObject.GetComponent<AmmoSlotData>().GetNumber())
+                    if(6 >= child.gameObject.GetComponent<AmmoSlotData>().GetNumber()) //6 replaced chamber ammo since removed
                     {
                         if (!child.Find("Loaded").GetComponent<Image>().enabled)
                         {

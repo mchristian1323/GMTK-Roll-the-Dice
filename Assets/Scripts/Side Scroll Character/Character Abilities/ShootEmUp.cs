@@ -1,4 +1,5 @@
-﻿using SideScrollControl.CharacterAbilities.Gun;
+﻿using DiceMechanics;
+using SideScrollControl.CharacterAbilities.Gun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +17,6 @@ namespace SideScrollControl.CharacterAbilities
         [SerializeField] GameObject bullet;
 
         [Header("Bullet Physics")]
-        [SerializeField] int baseAmmoCount = 6; //how much
         [SerializeField] float baseDamage = 10; //how hard
         [SerializeField] float baseShotSpeed = 10f; //how fast
         //how far
@@ -28,21 +28,21 @@ namespace SideScrollControl.CharacterAbilities
         [SerializeField] float baseReloadTime;
         [SerializeField] Transform businessEnd;
         [SerializeField] GameObject muzzleFlash;
+        [SerializeField] float gunKnockBackForce = 5f;
 
         //Initialized
         PlayerInput myPlayerInput;
         DaGun[] guns;
         Animator myAnimator;
+        Rigidbody2D myRigidBody;
 
         //private
-        int chamberAmmo;
         int gunCount = 1;
         int shotStanceCounter = 1;
         float chamberDamage;
         float chamberShotSpeed;
 
         bool canShoot;
-        float reloadBuffer;
 
         float direction;
 
@@ -56,6 +56,7 @@ namespace SideScrollControl.CharacterAbilities
         {
             myPlayerInput = GetComponent<PlayerInput>();
             myAnimator = GetComponent<Animator>();
+            myRigidBody = GetComponent<Rigidbody2D>();
 
             //controller actions
             myPlayerInput.actions["Shoot"].started += OnShoot;
@@ -63,11 +64,9 @@ namespace SideScrollControl.CharacterAbilities
 
         void Start()
         {
-            chamberAmmo = baseAmmoCount;
             chamberDamage = baseDamage;
             chamberShotSpeed = baseShotSpeed;
             canShoot = true;
-            reloadBuffer = baseReloadTime;
             guns = transform.GetComponentsInChildren<DaGun>();
         }
 
@@ -75,11 +74,6 @@ namespace SideScrollControl.CharacterAbilities
         void Update()
         {
             direction = gameObject.transform.localScale.x;
-
-            if(chamberAmmo < baseAmmoCount)
-            {
-                TimedReload();
-            }
         }
 
         //controller
@@ -88,39 +82,44 @@ namespace SideScrollControl.CharacterAbilities
             //if can shoot and has ammo
             if(canShoot)
             {
-                if (chamberAmmo > 0)
+                //have if in air and if pointing up or down
+                    //if down, then shoot down business end
+                    // bump the rigid body so you fall slower
+                //gun 4 is down
+                if(GetComponent<PlayerSideScrollControls>().GetAimingDownData())
                 {
-                    for(int i = 0; i < gunCount; i++)
+                    guns[3].Fire(bullet, chamberShotSpeed, direction, chamberDamage, muzzleFlash);
+                    myRigidBody.velocity += new Vector2(0, gunKnockBackForce); //not consistent?
+                    //right direction
+                    //speed
+                    //push back
+                    //anim
+                } //gun 5 is up
+                else if(GetComponent<PlayerSideScrollControls>().GetAimingUpData())
+                {
+                    guns[4].Fire(bullet, chamberShotSpeed, direction, chamberDamage, muzzleFlash);
+                    myRigidBody.velocity += new Vector2(0, -gunKnockBackForce); //not consistent?
+                }
+                else
+                {
+                    for (int i = 0; i < gunCount; i++)
                     {
                         guns[i].Fire(bullet, chamberShotSpeed, direction, chamberDamage, muzzleFlash);
                     }
-                    //reduce ammo
-                    chamberAmmo--;
-
-                    //reset reload timer
-                    reloadBuffer = baseReloadTime;
 
                     //update animation
                     OnBulletInteraction?.Invoke(this, EventArgs.Empty);
 
                     myAnimator.SetInteger("GunStance", shotStanceCounter);
                     myAnimator.SetTrigger("ShootGun");
+                    //GetComponentInChildren<HeldDice>().DiceGunSwitching();
                     shotStanceCounter++;
                     if (shotStanceCounter > 4)
                         shotStanceCounter = 1;
                 }
+                //if up then shoot up business end
+                //bump rigid body to fall faster
             }
-            //consider the ability to change shooting styles
-            //possibly have if/switch statements that go through different options under can shoot
-            //beyond change of ammo count and bullet physics
-
-            //idea 2
-                //make the shooting its own script and have an array of guns to work with.
-                //make the ammo type something made and changed from here
-                //have each one of them have a spread shot option
-
-            //might need to make the reload like time crisis
-                //have the "Damage level" Be something that evolves more with everything. more ammo, bigger shot, more damage, ect.
         }
 
         public void PauseMove()
@@ -161,41 +160,7 @@ namespace SideScrollControl.CharacterAbilities
         }
 
         //private
-        private void TimedReload()
-        {
-            if(reloadBuffer < baseReloadTime - .5f)
-            {
-                //gunSpriteRenderer.enabled = false; //this will changes
-            }
-
-            //reloadbuffer += time.DeltaTime;
-            if(reloadBuffer > 0)
-            {
-                reloadBuffer -= Time.deltaTime;
-            }
-            else
-            {
-                reloadBuffer = baseReloadTime;
-                chamberAmmo++;
-                OnBulletInteraction?.Invoke(this, EventArgs.Empty);
-            }
-
-            //idea two
-            //if reload is pressed, add a bullet every .25 seconds until full
-        }
-
         //getters and setters
-        public int GetChamberAmmo()
-        {
-            return chamberAmmo;
-        }
-
-        //possibly have a second variable that gets effected so that the bases never change
-        public void SetBaseAmmo(int newAmmoCount)
-        {
-            baseAmmoCount = newAmmoCount;
-        }
-
         public void SetDamage(int newDamage)
         {
             chamberDamage += newDamage;
@@ -217,7 +182,6 @@ namespace SideScrollControl.CharacterAbilities
         {
             yield return new WaitForSeconds(10f);
             gunCount = 1;
-
         }
     }
 }

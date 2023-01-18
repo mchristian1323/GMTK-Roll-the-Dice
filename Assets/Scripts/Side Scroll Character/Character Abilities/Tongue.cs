@@ -59,7 +59,7 @@ namespace SideScrollControl.CharacterAbilities
             if (!isGrappling)
             {
                 direction = transform.position;
-                Debug.Log(direction);
+                //Debug.Log(direction);
 
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, grappleMask);
 

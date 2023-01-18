@@ -228,13 +228,14 @@ namespace UI.Player
                     }
                 }
 
-                activeSpellCount--;
+                //activeSpellCount--;
                 RefreshSelector();
             }
         }
 
         private void RefreshSelector()
         {
+            Debug.Log(activeSpellCount);
             if(activeSpellCount == 0)
             {
                 currentSelector.GetComponent<Image>().enabled = false;
