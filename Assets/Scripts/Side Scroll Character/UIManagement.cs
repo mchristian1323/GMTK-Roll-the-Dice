@@ -7,8 +7,7 @@ namespace SideScrollControl
 {
     public class UIManagement : MonoBehaviour
     {
-        [SerializeField] AmmoUI myAmmoUI;
-        [SerializeField] NumberSpellUI myNumberSpellUI;
+        [SerializeField] HealthAndCollectableUI myHealthAndCollectableUI;
 
         //this script sets up the ui without clogging up other scripts on the player character
         private void Start()
@@ -16,8 +15,7 @@ namespace SideScrollControl
             //myAmmoUI.SetShootEmUp(GetComponent<ShootEmUp>());
             //myNumberSpellUI.SetUpNumberSpellBook(GetComponent<NumberCaster>());
 
-            //health bar
-            //collectables
+            myHealthAndCollectableUI.SetUpStats(GetComponent<SideScrollStatus>());
             //item
         }
     }

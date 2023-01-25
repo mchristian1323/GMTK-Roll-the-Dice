@@ -24,7 +24,7 @@ namespace UI.Player
         {
             this.myShootEmUp = myShootEmUp;
 
-            myShootEmUp.OnBulletInteraction += AmmoUI_OnBulletInteraction;
+            //myShootEmUp.OnBulletInteraction += AmmoUI_OnBulletInteraction;
             RefreshAmmoBelt();
 
             startup = true;

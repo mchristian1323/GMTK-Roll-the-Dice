@@ -2,6 +2,8 @@
 using UnityEngine;
 using DiceMechanics;
 using SideScrollControl.CharacterAbilities;
+using System;
+using Enemy;
 
 namespace SideScrollControl
 {
@@ -22,6 +24,9 @@ namespace SideScrollControl
         ShootEmUp myShootEmUp;
 
         bool landed;
+
+        public event EventHandler OnHealthInteraction;
+        public event EventHandler OnCoinInteraction;
 
         // Start is called before the first frame update
         void Start()
@@ -44,6 +49,7 @@ namespace SideScrollControl
         public void Heal(float healthValue)
         {
             health += healthValue;
+            OnHealthInteraction?.Invoke(this, EventArgs.Empty);
         }
 
         public void SoftReset()
@@ -69,7 +75,9 @@ namespace SideScrollControl
             {
                 health -= collision.gameObject.GetComponent<Enemy.EnemyStatus>().GetEnemyDamage(); 
 
+                OnHealthInteraction?.Invoke(this, EventArgs.Empty);
                 //test the "hazard" Script here instead of the DamageCheck() script. then keep the other stuff there
+                //collision.gameObject.GetComponent<EnemyStatus>
 
             }
         }
@@ -86,7 +94,7 @@ namespace SideScrollControl
                 //myDiceHolder.DropDice();
                     //possibly move this to a seperate script that has authority over the other scripts
                 mySideScrollControls.PauseMove();
-                GetComponent<ShootEmUp>().PauseMove();
+                GetComponent<ShootEmUp>().PauseMove(1.5f);
                 //movement
                 myRigidbody.velocity = Vector2.zero;
                 myRigidbody.velocity = new Vector2(damageHorizontalKick * transform.localScale.x, damageVerticalKick);
@@ -119,6 +127,12 @@ namespace SideScrollControl
         private void Death()
         {
             //activate death sequence
+        }
+
+        //getters
+        public float GetHealth()
+        {
+            return health;
         }
     }
 }

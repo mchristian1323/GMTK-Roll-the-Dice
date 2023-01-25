@@ -965,8 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51aec38a59d41e8408f5d4ceb03592ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAmmoUI: {fileID: 0}
-  myNumberSpellUI: {fileID: 0}
+  myHealthAndCollectableUI: {fileID: 0}
 --- !u!114 &3600222516463294367
 MonoBehaviour:
   m_ObjectHideFlags: 0

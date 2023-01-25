@@ -86,73 +86,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "SpellSelectionUp",
-                    "type": "Button",
-                    "id": "94b90a97-96ea-4816-b2aa-557fada29bdc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "SpellSelectionDown",
-                    "type": "Button",
-                    "id": "193245a0-7835-4124-ba5b-fbd95a906f16",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "SpellActivate",
                     "type": "Button",
                     "id": "54cd649a-dbf5-405c-8404-a6bf3edd342c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "One",
-                    "type": "Button",
-                    "id": "73a2af0b-0766-4aa1-8014-4321f7393c8b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Two",
-                    "type": "Button",
-                    "id": "34bb5cd5-c970-4b9b-947a-0933ce8a5df0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Three",
-                    "type": "Button",
-                    "id": "0a4ddfb7-6268-4731-9c8b-448d7d4b56ea",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Four",
-                    "type": "Button",
-                    "id": "663f4303-1d38-481e-8a2b-3cb4bcdc1dcc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Five",
-                    "type": "Button",
-                    "id": "88ab2317-918e-401d-a65c-ba67c7e8cfa8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Six",
-                    "type": "Button",
-                    "id": "df0958db-cf8d-4ffe-9eeb-919d8d1b07bf",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -304,100 +240,12 @@
                 },
                 {
                     "name": "",
-                    "id": "92b61e17-1e46-4595-ba66-ece2ea06887d",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "SpellSelectionUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0e8549aa-9955-4fe4-bfc8-5e6847117543",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "SpellSelectionDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a78488b5-31c5-4e05-8ceb-ca49edb8945a",
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "SpellActivate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7cd91bba-e21b-457d-bde5-7127560b5baf",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "One",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ff4a5539-d138-4f47-97e2-d75977933256",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Two",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "be98c82b-2524-4307-81a6-b5c298f417ba",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Three",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ef017fc1-c0f7-4099-a59b-6376625fd960",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Four",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c25be4c7-394e-4ed0-9d9c-07d643d4015d",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Five",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4584436c-2322-416e-85ff-4ae43b07426f",
-                    "path": "<Keyboard>/6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Six",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

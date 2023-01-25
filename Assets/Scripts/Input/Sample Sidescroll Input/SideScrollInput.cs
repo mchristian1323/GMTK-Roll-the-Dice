@@ -99,73 +99,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""SpellSelectionUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""94b90a97-96ea-4816-b2aa-557fada29bdc"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""SpellSelectionDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""193245a0-7835-4124-ba5b-fbd95a906f16"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""SpellActivate"",
                     ""type"": ""Button"",
                     ""id"": ""54cd649a-dbf5-405c-8404-a6bf3edd342c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""One"",
-                    ""type"": ""Button"",
-                    ""id"": ""73a2af0b-0766-4aa1-8014-4321f7393c8b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Two"",
-                    ""type"": ""Button"",
-                    ""id"": ""34bb5cd5-c970-4b9b-947a-0933ce8a5df0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Three"",
-                    ""type"": ""Button"",
-                    ""id"": ""0a4ddfb7-6268-4731-9c8b-448d7d4b56ea"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Four"",
-                    ""type"": ""Button"",
-                    ""id"": ""663f4303-1d38-481e-8a2b-3cb4bcdc1dcc"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Five"",
-                    ""type"": ""Button"",
-                    ""id"": ""88ab2317-918e-401d-a65c-ba67c7e8cfa8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Six"",
-                    ""type"": ""Button"",
-                    ""id"": ""df0958db-cf8d-4ffe-9eeb-919d8d1b07bf"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -317,100 +253,12 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""92b61e17-1e46-4595-ba66-ece2ea06887d"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""SpellSelectionUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0e8549aa-9955-4fe4-bfc8-5e6847117543"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""SpellSelectionDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a78488b5-31c5-4e05-8ceb-ca49edb8945a"",
                     ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
                     ""action"": ""SpellActivate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7cd91bba-e21b-457d-bde5-7127560b5baf"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ff4a5539-d138-4f47-97e2-d75977933256"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""be98c82b-2524-4307-81a6-b5c298f417ba"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Three"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ef017fc1-c0f7-4099-a59b-6376625fd960"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Four"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c25be4c7-394e-4ed0-9d9c-07d643d4015d"",
-                    ""path"": ""<Keyboard>/5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Five"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4584436c-2322-416e-85ff-4ae43b07426f"",
-                    ""path"": ""<Keyboard>/6"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Six"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -459,15 +307,7 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         m_NormalSideScroll_AimUp = m_NormalSideScroll.FindAction("AimUp", throwIfNotFound: true);
         m_NormalSideScroll_AimDown = m_NormalSideScroll.FindAction("AimDown", throwIfNotFound: true);
         m_NormalSideScroll_Tongue = m_NormalSideScroll.FindAction("Tongue", throwIfNotFound: true);
-        m_NormalSideScroll_SpellSelectionUp = m_NormalSideScroll.FindAction("SpellSelectionUp", throwIfNotFound: true);
-        m_NormalSideScroll_SpellSelectionDown = m_NormalSideScroll.FindAction("SpellSelectionDown", throwIfNotFound: true);
         m_NormalSideScroll_SpellActivate = m_NormalSideScroll.FindAction("SpellActivate", throwIfNotFound: true);
-        m_NormalSideScroll_One = m_NormalSideScroll.FindAction("One", throwIfNotFound: true);
-        m_NormalSideScroll_Two = m_NormalSideScroll.FindAction("Two", throwIfNotFound: true);
-        m_NormalSideScroll_Three = m_NormalSideScroll.FindAction("Three", throwIfNotFound: true);
-        m_NormalSideScroll_Four = m_NormalSideScroll.FindAction("Four", throwIfNotFound: true);
-        m_NormalSideScroll_Five = m_NormalSideScroll.FindAction("Five", throwIfNotFound: true);
-        m_NormalSideScroll_Six = m_NormalSideScroll.FindAction("Six", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -527,15 +367,7 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
     private readonly InputAction m_NormalSideScroll_AimUp;
     private readonly InputAction m_NormalSideScroll_AimDown;
     private readonly InputAction m_NormalSideScroll_Tongue;
-    private readonly InputAction m_NormalSideScroll_SpellSelectionUp;
-    private readonly InputAction m_NormalSideScroll_SpellSelectionDown;
     private readonly InputAction m_NormalSideScroll_SpellActivate;
-    private readonly InputAction m_NormalSideScroll_One;
-    private readonly InputAction m_NormalSideScroll_Two;
-    private readonly InputAction m_NormalSideScroll_Three;
-    private readonly InputAction m_NormalSideScroll_Four;
-    private readonly InputAction m_NormalSideScroll_Five;
-    private readonly InputAction m_NormalSideScroll_Six;
     public struct NormalSideScrollActions
     {
         private @SideScrollInput m_Wrapper;
@@ -550,15 +382,7 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         public InputAction @AimUp => m_Wrapper.m_NormalSideScroll_AimUp;
         public InputAction @AimDown => m_Wrapper.m_NormalSideScroll_AimDown;
         public InputAction @Tongue => m_Wrapper.m_NormalSideScroll_Tongue;
-        public InputAction @SpellSelectionUp => m_Wrapper.m_NormalSideScroll_SpellSelectionUp;
-        public InputAction @SpellSelectionDown => m_Wrapper.m_NormalSideScroll_SpellSelectionDown;
         public InputAction @SpellActivate => m_Wrapper.m_NormalSideScroll_SpellActivate;
-        public InputAction @One => m_Wrapper.m_NormalSideScroll_One;
-        public InputAction @Two => m_Wrapper.m_NormalSideScroll_Two;
-        public InputAction @Three => m_Wrapper.m_NormalSideScroll_Three;
-        public InputAction @Four => m_Wrapper.m_NormalSideScroll_Four;
-        public InputAction @Five => m_Wrapper.m_NormalSideScroll_Five;
-        public InputAction @Six => m_Wrapper.m_NormalSideScroll_Six;
         public InputActionMap Get() { return m_Wrapper.m_NormalSideScroll; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -598,33 +422,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @Tongue.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
                 @Tongue.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
                 @Tongue.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTongue;
-                @SpellSelectionUp.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionUp;
-                @SpellSelectionUp.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionUp;
-                @SpellSelectionUp.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionUp;
-                @SpellSelectionDown.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionDown;
-                @SpellSelectionDown.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionDown;
-                @SpellSelectionDown.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellSelectionDown;
                 @SpellActivate.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellActivate;
                 @SpellActivate.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellActivate;
                 @SpellActivate.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSpellActivate;
-                @One.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnOne;
-                @One.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnOne;
-                @One.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnOne;
-                @Two.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTwo;
-                @Two.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTwo;
-                @Two.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnTwo;
-                @Three.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnThree;
-                @Three.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnThree;
-                @Three.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnThree;
-                @Four.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnFour;
-                @Four.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnFour;
-                @Four.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnFour;
-                @Five.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnFive;
-                @Five.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnFive;
-                @Five.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnFive;
-                @Six.started -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSix;
-                @Six.performed -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSix;
-                @Six.canceled -= m_Wrapper.m_NormalSideScrollActionsCallbackInterface.OnSix;
             }
             m_Wrapper.m_NormalSideScrollActionsCallbackInterface = instance;
             if (instance != null)
@@ -659,33 +459,9 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
                 @Tongue.started += instance.OnTongue;
                 @Tongue.performed += instance.OnTongue;
                 @Tongue.canceled += instance.OnTongue;
-                @SpellSelectionUp.started += instance.OnSpellSelectionUp;
-                @SpellSelectionUp.performed += instance.OnSpellSelectionUp;
-                @SpellSelectionUp.canceled += instance.OnSpellSelectionUp;
-                @SpellSelectionDown.started += instance.OnSpellSelectionDown;
-                @SpellSelectionDown.performed += instance.OnSpellSelectionDown;
-                @SpellSelectionDown.canceled += instance.OnSpellSelectionDown;
                 @SpellActivate.started += instance.OnSpellActivate;
                 @SpellActivate.performed += instance.OnSpellActivate;
                 @SpellActivate.canceled += instance.OnSpellActivate;
-                @One.started += instance.OnOne;
-                @One.performed += instance.OnOne;
-                @One.canceled += instance.OnOne;
-                @Two.started += instance.OnTwo;
-                @Two.performed += instance.OnTwo;
-                @Two.canceled += instance.OnTwo;
-                @Three.started += instance.OnThree;
-                @Three.performed += instance.OnThree;
-                @Three.canceled += instance.OnThree;
-                @Four.started += instance.OnFour;
-                @Four.performed += instance.OnFour;
-                @Four.canceled += instance.OnFour;
-                @Five.started += instance.OnFive;
-                @Five.performed += instance.OnFive;
-                @Five.canceled += instance.OnFive;
-                @Six.started += instance.OnSix;
-                @Six.performed += instance.OnSix;
-                @Six.canceled += instance.OnSix;
             }
         }
     }
@@ -720,14 +496,6 @@ public class @SideScrollInput : IInputActionCollection, IDisposable
         void OnAimUp(InputAction.CallbackContext context);
         void OnAimDown(InputAction.CallbackContext context);
         void OnTongue(InputAction.CallbackContext context);
-        void OnSpellSelectionUp(InputAction.CallbackContext context);
-        void OnSpellSelectionDown(InputAction.CallbackContext context);
         void OnSpellActivate(InputAction.CallbackContext context);
-        void OnOne(InputAction.CallbackContext context);
-        void OnTwo(InputAction.CallbackContext context);
-        void OnThree(InputAction.CallbackContext context);
-        void OnFour(InputAction.CallbackContext context);
-        void OnFive(InputAction.CallbackContext context);
-        void OnSix(InputAction.CallbackContext context);
     }
 }

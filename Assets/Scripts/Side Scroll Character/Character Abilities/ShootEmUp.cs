@@ -47,7 +47,7 @@ namespace SideScrollControl.CharacterAbilities
         float direction;
 
         //events
-        public event EventHandler OnBulletInteraction;
+        //public event EventHandler OnBulletInteraction;
 
         //have a bool that changes the launch point depending on if the player is holding up or down
 
@@ -108,7 +108,7 @@ namespace SideScrollControl.CharacterAbilities
                     }
 
                     //update animation
-                    OnBulletInteraction?.Invoke(this, EventArgs.Empty);
+                    //OnBulletInteraction?.Invoke(this, EventArgs.Empty);
 
                     myAnimator.SetInteger("GunStance", shotStanceCounter);
                     myAnimator.SetTrigger("ShootGun");
@@ -119,18 +119,19 @@ namespace SideScrollControl.CharacterAbilities
                 }
                 //if up then shoot up business end
                 //bump rigid body to fall faster
+                PauseMove(.1f);
             }
         }
 
-        public void PauseMove()
+        public void PauseMove(float x)
         {
             canShoot = false;
-            StartCoroutine(PauseReset());
+            StartCoroutine(PauseReset( x));
         }
 
-        IEnumerator PauseReset()
+        IEnumerator PauseReset(float x)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(x);
             canShoot = true;
         }
 
