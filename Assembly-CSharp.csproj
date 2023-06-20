@@ -129,6 +129,8 @@
     <Compile Include="Assets\Scripts\Side Scroll Character\TestMovementControlls.cs" />
     <Compile Include="Assets\Scripts\Side Scroll Character\UIManagement.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\CircleTransitionAnimation.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\CutOutMaskUI.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\MenuManager.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\TitleMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Player\AmmoSlotData.cs" />
