@@ -67,16 +67,15 @@
     <Compile Include="Assets\Scripts\Dice\HeldDice.cs" />
     <Compile Include="Assets\Scripts\Dice\RandomNumber.cs" />
     <Compile Include="Assets\Scripts\Enemies\AggroGoblin.cs" />
-    <Compile Include="Assets\Scripts\Enemies\DiceSniffer.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyBaseMovement.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyFocusSwitch.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyStatus.cs" />
     <Compile Include="Assets\Scripts\Enemies\GoblinBombDelay.cs" />
     <Compile Include="Assets\Scripts\Enemies\Parascope.cs" />
-    <Compile Include="Assets\Scripts\Enemies\new\EnemyHealthAndStatus.cs" />
     <Compile Include="Assets\Scripts\Enemies\new\EnemyNodeDetection.cs" />
     <Compile Include="Assets\Scripts\Enemies\new\EnemyTrackFlight.cs" />
     <Compile Include="Assets\Scripts\Enemies\new\EnemyTrackMovement.cs" />
+    <Compile Include="Assets\Scripts\Game Session\Checkpoint\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Game Session\GameSession.cs" />
     <Compile Include="Assets\Scripts\Game Session\TransitionScene.cs" />
     <Compile Include="Assets\Scripts\Input\Sample Sidescroll Input\SideScrollInput.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Assets\Scripts\Saving and Loading Json\JsonSavingSystem.cs" />
     <Compile Include="Assets\Scripts\Saving and Loading Json\JsonStrategy.cs" />
     <Compile Include="Assets\Scripts\Saving and Loading Json\SavingStrategy.cs" />
+    <Compile Include="Assets\Scripts\Saving and Loading Json\SavingWrapper.cs" />
     <Compile Include="Assets\Scripts\Saving and Loading Json\XorTextStrategy.cs" />
     <Compile Include="Assets\Scripts\Side Scroll Character\Character Abilities\CatchTongue.cs" />
     <Compile Include="Assets\Scripts\Side Scroll Character\Character Abilities\DaGun.cs" />
@@ -129,6 +129,8 @@
     <Compile Include="Assets\Scripts\Side Scroll Character\TestMovementControlls.cs" />
     <Compile Include="Assets\Scripts\Side Scroll Character\UIManagement.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\CircleTransitionAnimation.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\CutOutMaskUI.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\MenuManager.cs" />
     <Compile Include="Assets\Scripts\UI\Menus\TitleMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Player\AmmoSlotData.cs" />
